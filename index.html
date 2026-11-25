@@ -1,0 +1,2577 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лист персонажа D&D 5e — Кай (Разбойник 4)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Cinzel', 'Inter', 'serif'],
+          },
+          colors: {
+            graphite: {
+              950: '#090b0f',
+              900: '#0f131a',
+              850: '#141922',
+              800: '#1a202c',
+              750: '#212836',
+              700: '#2d3748',
+            },
+            gold: {
+              300: '#fde68a',
+              400: '#fbbf24',
+              500: '#d4af37',
+              600: '#b48a1e',
+              700: '#8c6712',
+            },
+            parchment: {
+              100: '#f5efe2',
+              200: '#e8dec8',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    body {
+      background-color: #090b0f;
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(212, 175, 55, 0.08), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.06), transparent 45%),
+        linear-gradient(180deg, #090b0f 0%, #0d1118 100%);
+      color: #f3f4f6;
+      min-height: 100vh;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f131a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2b3445;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d4af37;
+    }
+
+    .dnd-input {
+      background: rgba(15, 19, 26, 0.78);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      border-radius: 0.5rem;
+      color: #f9fafb;
+      transition: all 0.18s ease;
+    }
+    .dnd-input:hover {
+      border-color: rgba(212, 175, 55, 0.45);
+    }
+    .dnd-input:focus {
+      outline: none;
+      border-color: #d4af37;
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+      background: rgba(20, 26, 36, 0.95);
+    }
+
+    .dnd-card {
+      background: linear-gradient(180deg, rgba(20, 25, 34, 0.94) 0%, rgba(14, 18, 25, 0.96) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.24);
+      box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      border-radius: 0.9rem;
+    }
+
+    .dnd-card-gold {
+      background: linear-gradient(180deg, rgba(27, 24, 18, 0.95) 0%, rgba(16, 18, 24, 0.96) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.42);
+      box-shadow: 0 14px 32px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(251, 191, 36, 0.12);
+      border-radius: 0.9rem;
+    }
+
+    .stat-shield {
+      background: linear-gradient(160deg, #1b2230 0%, #10141c 100%);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 0.85rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    input[type="number"].no-spinner::-webkit-inner-spin-button,
+    input[type="number"].no-spinner::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"].no-spinner {
+      -moz-appearance: textfield;
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: translateY(8px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .animate-pop {
+      animation: popIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #111827 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only-block {
+        display: block !important;
+      }
+      .dnd-card, .dnd-card-gold, .stat-shield {
+        background: #ffffff !important;
+        color: #111827 !important;
+        border: 1px solid #9ca3af !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+      }
+      .dnd-input, textarea, input, select {
+        background: #f9fafb !important;
+        color: #111827 !important;
+        border: 1px solid #d1d5db !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-gold-500/30 selection:text-gold-200">
+  <div id="app" class="min-h-screen flex flex-col">
+    <!-- Верхняя панель управления -->
+    <header class="no-print sticky top-0 z-40 backdrop-blur-xl bg-graphite-950/85 border-b border-gold-500/25">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+        <!-- Логотип и статус сохранения -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400/25 to-gold-700/20 border border-gold-500/50 flex items-center justify-center text-gold-400 font-display font-bold text-lg shadow-inner">
+            ⚔
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="font-display font-bold tracking-wide text-gold-400 text-base sm:text-lg">D&amp;D 5e • ЛИСТ ПЕРСОНАЖА</span>
+              <span id="save-indicator" class="inline-flex items-center gap-1.5 text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 transition-all">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Сохранено</span>
+              </span>
+              <span id="cloud-sync-badge" class="inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/30">
+                <span>☁ Облако:</span>
+                <strong id="cloud-profile-label" class="font-mono">kai-main</strong>
+              </span>
+            </div>
+            <p class="text-xs text-gray-400 hidden sm:block">
+              <span>Нажмите на значение спасброска, навыка или атаки для броска d20 • Все поля редактируются</span>
+              <button id="btn-secret-luck-toggle" type="button" aria-label="Переключить режим удачи" title="" class="w-4 h-4 ml-1 rounded-full align-middle opacity-0 hover:opacity-15 focus:opacity-15 transition-opacity cursor-pointer select-none"></button>
+            </p>
+          </div>
+        </div>
+
+        <!-- Кнопки действий и сохранения значений -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="flex items-center gap-1 bg-graphite-850 border border-sky-500/30 rounded-lg px-2 py-1" title="Код профиля листа для доступа с любого устройства">
+            <span class="text-[11px] text-sky-300 font-semibold">ID:</span>
+            <input id="cloud-profile-input" type="text" value="kai-main" aria-label="Код профиля листа" class="w-24 sm:w-28 bg-transparent text-xs font-mono text-white focus:outline-none" />
+            <button id="btn-cloud-connect" type="button" class="px-2 py-0.5 rounded bg-sky-500/20 hover:bg-sky-500/35 text-sky-200 text-xs font-semibold transition cursor-pointer" title="Подключить этот код профиля и загрузить лист с любого устройства">
+              Открыть
+            </button>
+          </div>
+          <button id="btn-roll-d20" type="button" class="px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-gradient-to-r from-gold-600 to-gold-500 text-graphite-950 hover:from-gold-500 hover:to-gold-400 shadow-md shadow-gold-500/20 active:scale-[0.98] transition flex items-center gap-1.5 cursor-pointer">
+            <span>🎲</span>
+            <span>Бросить d20</span>
+          </button>
+          <button id="btn-toggle-dice-panel" type="button" aria-expanded="true" aria-controls="dice-collapsible-body" class="px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-graphite-850 hover:bg-graphite-800 text-gold-300 border border-gold-500/30 transition flex items-center gap-1.5 cursor-pointer" title="Свернуть или развернуть блок дайс-роллера">
+            <span id="dice-toggle-icon">▾</span>
+            <span id="dice-toggle-label">Свернуть</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Панель результата последнего броска кубиков -->
+      <div id="dice-banner" class="border-t border-gold-500/15 bg-graphite-900/95">
+        <div id="dice-collapsible-body" class="max-w-7xl mx-auto px-3 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
+          <div id="dice-result-display" class="flex items-center gap-2.5 flex-wrap text-gray-200">
+            <span class="text-gold-400 font-semibold">🎲 Дайс-роллер готов:</span>
+            <span class="text-gray-400">Кликните по навыку, спасброску, атаке или кнопке «Бросить d20».</span>
+          </div>
+
+          <!-- Калькулятор брошенных значений -->
+          <div id="rolled-calculator-bar" class="w-full mt-1 pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div class="flex items-center gap-2 flex-wrap min-w-0">
+              <span class="text-amber-300 font-semibold">🧮 Калькулятор бросков:</span>
+              <span id="calc-expression-display" class="font-mono text-gray-300 bg-graphite-950/90 border border-white/10 rounded px-2 py-0.5 truncate max-w-[260px] sm:max-w-[440px]">0</span>
+              <span class="text-gray-400">=</span>
+              <span id="calc-total-display" class="font-mono font-extrabold text-sm text-gold-300 bg-gold-500/15 border border-gold-500/35 rounded px-2.5 py-0.5">0</span>
+              <span id="calc-mode-badge" class="text-[11px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">Режим: + Сумма</span>
+            </div>
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <button id="btn-calc-op-add" type="button" class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-200 border border-emerald-500/40 font-mono font-bold cursor-pointer" title="Складывать новые броски">+</button>
+              <button id="btn-calc-op-sub" type="button" class="px-2 py-1 rounded bg-graphite-800 hover:bg-rose-500/20 text-gray-300 hover:text-rose-200 border border-white/10 font-mono font-bold cursor-pointer" title="Вычитать новые броски">−</button>
+              <button id="btn-calc-op-mul" type="button" class="px-2 py-1 rounded bg-graphite-800 hover:bg-sky-500/20 text-gray-300 hover:text-sky-200 border border-white/10 font-mono font-bold cursor-pointer" title="Умножить текущий итог на следующий бросок">×</button>
+              <button id="btn-calc-op-div" type="button" class="px-2 py-1 rounded bg-graphite-800 hover:bg-purple-500/20 text-gray-300 hover:text-purple-200 border border-white/10 font-mono font-bold cursor-pointer" title="Разделить текущий итог на следующий бросок (округление вниз)">÷</button>
+              <input id="calc-manual-value" type="number" placeholder="Число" aria-label="Добавить число в калькулятор" class="no-spinner w-16 px-2 py-1 rounded bg-graphite-950 border border-white/15 text-center font-mono text-xs text-white focus:outline-none focus:border-gold-400" />
+              <button id="btn-calc-add-manual" type="button" class="px-2 py-1 rounded bg-gold-500/20 hover:bg-gold-500/30 text-gold-200 border border-gold-500/35 font-semibold cursor-pointer" title="Добавить введённое число">Внести</button>
+              <button id="btn-calc-undo" type="button" class="px-2 py-1 rounded bg-graphite-800 hover:bg-graphite-700 text-gray-300 border border-white/10 cursor-pointer" title="Отменить последний элемент">↶</button>
+              <button id="btn-calc-clear" type="button" class="px-2 py-1 rounded bg-rose-950/70 hover:bg-rose-900 text-rose-200 border border-rose-500/30 font-semibold cursor-pointer" title="Очистить калькулятор бросков">Очистить</button>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="text-xs text-gray-400 mr-1 hidden sm:inline">Кол-во кубов:</span>
+            <div class="inline-flex items-center gap-1 bg-graphite-800 border border-gold-500/30 rounded-lg px-1.5 py-0.5 mr-1">
+              <button id="btn-dice-count-dec" type="button" class="w-5 h-5 rounded bg-graphite-900 hover:bg-gold-500/20 text-xs font-bold text-gray-200 cursor-pointer" title="Уменьшить количество кубов">−</button>
+              <input id="dice-count-input" type="number" min="1" max="50" value="1" aria-label="Количество кубов" class="no-spinner w-9 text-center bg-transparent text-xs font-mono font-bold text-gold-300 focus:outline-none" />
+              <button id="btn-dice-count-inc" type="button" class="w-5 h-5 rounded bg-graphite-900 hover:bg-gold-500/20 text-xs font-bold text-gray-200 cursor-pointer" title="Увеличить количество кубов">+</button>
+            </div>
+            <button data-dice-count-preset="1" type="button" class="dice-count-preset px-1.5 py-1 rounded bg-gold-500/20 text-gold-300 border border-gold-500/40 text-xs font-mono transition cursor-pointer">×1</button>
+            <button data-dice-count-preset="2" type="button" class="dice-count-preset px-1.5 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">×2</button>
+            <button data-dice-count-preset="3" type="button" class="dice-count-preset px-1.5 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">×3</button>
+            <button data-dice-count-preset="4" type="button" class="dice-count-preset px-1.5 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">×4</button>
+            <button data-dice-count-preset="6" type="button" class="dice-count-preset px-1.5 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">×6</button>
+            <span class="text-xs text-gray-400 mx-1 hidden sm:inline">Кубы:</span>
+            <button data-quick-dice="d4" type="button" class="quick-dice-btn px-2 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">d4</button>
+            <button data-quick-dice="d6" type="button" class="quick-dice-btn px-2 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">d6</button>
+            <button data-quick-dice="d8" type="button" class="quick-dice-btn px-2 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">d8</button>
+            <button data-quick-dice="d10" type="button" class="quick-dice-btn px-2 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">d10</button>
+            <button data-quick-dice="d12" type="button" class="quick-dice-btn px-2 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">d12</button>
+            <button data-quick-dice="d20" type="button" class="quick-dice-btn px-2 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">d20</button>
+            <button data-quick-dice="d100" type="button" class="quick-dice-btn px-2 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer">d100</button>
+            <span id="rigged-controls-group" class="hidden items-center gap-1.5">
+              <span class="text-xs text-gray-400 mx-1 hidden sm:inline">Удача:</span>
+              <button id="btn-rigged-mode" type="button" class="px-2 py-1 rounded bg-graphite-800 hover:bg-amber-500/20 text-gray-300 border border-white/10 text-xs font-semibold transition cursor-pointer" title="Включить/выключить смещение выпадения в сторону больших значений">
+                🍀 Честно
+              </button>
+              <select id="rigged-power" aria-label="Степень удачи кубов" class="bg-graphite-800 border border-gold-500/25 rounded px-1.5 py-1 text-xs font-mono text-amber-200 focus:outline-none focus:border-gold-400 cursor-pointer" title="Сила смещения к большим числам">
+                <option value="0.55">Лёгкая (×1.55)</option>
+                <option value="0.4" selected>Средняя (×2.5)</option>
+                <option value="0.25">Высокая (×4)</option>
+              </select>
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Модальное окно подтверждения сброса / уведомлений -->
+    <div id="modal-backdrop" class="no-print fixed inset-0 z-50 hidden items-center justify-center bg-black/75 backdrop-blur-sm p-4">
+      <div id="modal-box" class="dnd-card-gold max-w-md w-full p-5 sm:p-6 animate-pop">
+        <h3 id="modal-title" class="font-display text-lg font-bold text-gold-400 mb-2">Подтверждение</h3>
+        <p id="modal-message" class="text-sm text-gray-300 leading-relaxed mb-5"></p>
+        <div id="modal-actions" class="flex items-center justify-end gap-3">
+          <button id="modal-cancel" type="button" class="px-4 py-2 rounded-lg text-sm font-medium bg-graphite-800 hover:bg-graphite-700 text-gray-200 border border-white/10 transition cursor-pointer">
+            Отмена
+          </button>
+          <button id="modal-confirm" type="button" class="px-4 py-2 rounded-lg text-sm font-semibold bg-rose-600 hover:bg-rose-500 text-white transition cursor-pointer">
+            Сбросить
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Тост уведомлений -->
+    <div id="toast-container" class="no-print fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Основной контент -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-5 space-y-5">
+      <!-- Шапка персонажа -->
+      <section class="dnd-card-gold p-4 sm:p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+          <div class="lg:col-span-4 bg-graphite-900/75 border border-gold-500/30 rounded-xl p-3.5">
+            <label for="char-name" class="block text-[11px] uppercase tracking-wider text-gold-400/90 font-semibold mb-1">
+              Имя персонажа
+            </label>
+            <input id="char-name" type="text" data-bind="header.name" class="w-full bg-transparent font-display text-2xl sm:text-3xl font-bold text-white focus:outline-none border-b border-transparent focus:border-gold-500 pb-0.5" />
+            <div class="mt-2 flex items-center justify-between text-xs text-gray-400">
+              <span>Шен'дралар / Ночной эльф</span>
+              <span class="text-gold-400/80">D&amp;D 5e</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            <div class="bg-graphite-900/60 border border-white/10 rounded-xl p-2.5">
+              <label for="char-class-level" class="block text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-1">Класс и уровень</label>
+              <input id="char-class-level" type="text" data-bind="header.classLevel" class="dnd-input w-full px-2.5 py-1.5 text-sm font-medium" />
+            </div>
+
+            <div class="bg-graphite-900/60 border border-white/10 rounded-xl p-2.5">
+              <label for="char-background" class="block text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-1">Предыстория</label>
+              <input id="char-background" type="text" data-bind="header.background" class="dnd-input w-full px-2.5 py-1.5 text-sm font-medium" />
+            </div>
+
+            <div class="bg-graphite-900/60 border border-white/10 rounded-xl p-2.5">
+              <label for="char-player" class="block text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-1">Имя игрока</label>
+              <input id="char-player" type="text" data-bind="header.playerName" class="dnd-input w-full px-2.5 py-1.5 text-sm font-medium" />
+            </div>
+
+            <div class="bg-graphite-900/60 border border-white/10 rounded-xl p-2.5">
+              <label for="char-race" class="block text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-1">Раса</label>
+              <input id="char-race" type="text" data-bind="header.race" class="dnd-input w-full px-2.5 py-1.5 text-sm font-medium" />
+            </div>
+
+            <div class="bg-graphite-900/60 border border-white/10 rounded-xl p-2.5">
+              <label for="char-speed" class="block text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-1">Скорость (фт.)</label>
+              <input id="char-speed" type="text" data-bind="header.speed" class="dnd-input w-full px-2.5 py-1.5 text-sm font-medium" />
+            </div>
+
+            <div class="bg-graphite-900/60 border border-white/10 rounded-xl p-2.5">
+              <label for="char-alignment" class="block text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-1">Мировоззрение</label>
+              <input id="char-alignment" type="text" data-bind="header.alignment" placeholder="Не указано" class="dnd-input w-full px-2.5 py-1.5 text-sm font-medium placeholder:text-gray-600" />
+            </div>
+
+            <div class="col-span-2 sm:col-span-2 md:col-span-2 bg-graphite-900/60 border border-white/10 rounded-xl p-2.5">
+              <label for="char-xp" class="block text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-1">Опыт (XP)</label>
+              <input id="char-xp" type="text" data-bind="header.xp" class="dnd-input w-full px-2.5 py-1.5 text-sm font-semibold text-gold-300" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Навигация по разделам -->
+      <nav class="no-print flex items-center gap-2 overflow-x-auto pb-1" aria-label="Разделы листа персонажа">
+        <button data-tab="sheet" type="button" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap cursor-pointer bg-gold-500 text-graphite-950 shadow-md shadow-gold-500/20">
+          <span>📜</span>
+          <span>Основной лист (1 стр.)</span>
+        </button>
+        <button data-tab="features" type="button" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap cursor-pointer bg-graphite-850 hover:bg-graphite-800 text-gray-300 border border-gold-500/20">
+          <span>✨</span>
+          <span>Особенности, яды и заклинания (2–3 стр.)</span>
+        </button>
+        <button data-tab="inventory" type="button" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap cursor-pointer bg-graphite-850 hover:bg-graphite-800 text-gray-300 border border-gold-500/20">
+          <span>🎒</span>
+          <span>Снаряжение и владения</span>
+        </button>
+      </nav>
+
+      <!-- ВКЛАДКА 1: ОСНОВНОЙ ЛИСТ -->
+      <div id="tab-sheet" class="tab-panel space-y-5">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-5 space-y-5">
+            <section class="dnd-card p-4">
+              <div class="flex items-center justify-between mb-3">
+                <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Характеристики</h2>
+                <button id="btn-sync-mods" type="button" class="text-xs px-2.5 py-1 rounded-md bg-graphite-800 hover:bg-gold-500/20 text-gold-300 border border-gold-500/25 transition cursor-pointer" title="Пересчитать все модификаторы по формуле floor((значение-10)/2)">
+                  Авто-модификаторы
+                </button>
+              </div>
+              <div id="abilities-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-3"></div>
+            </section>
+
+            <section class="dnd-card p-4">
+              <div class="flex items-center justify-between mb-2">
+                <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Спасброски</h2>
+                <span class="text-[11px] text-gray-400">Клик по бонусу = бросок d20</span>
+              </div>
+              <div id="saves-list" class="space-y-1"></div>
+            </section>
+
+            <section class="dnd-card p-4">
+              <div class="flex items-center justify-between mb-2">
+                <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Навыки</h2>
+                <div class="flex items-center gap-2 text-[11px] text-gray-400">
+                  <span title="Владение (+БМ)">● Влад.</span>
+                  <span title="Компетентность / Экспертиза (+2×БМ)">◆ Комп.</span>
+                </div>
+              </div>
+              <div id="skills-list" class="space-y-0.5"></div>
+            </section>
+          </div>
+
+          <div class="lg:col-span-7 space-y-5">
+            <section class="dnd-card p-4">
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                <div class="stat-shield p-3 text-center flex flex-col justify-between">
+                  <span class="text-[10px] uppercase tracking-wider text-gray-400 font-semibold">Бонус мастерства</span>
+                  <div class="my-1.5 flex items-center justify-center gap-1">
+                    <span class="text-gold-400 font-bold text-lg">+</span>
+                    <input id="prof-bonus" type="number" data-bind-num="combat.proficiencyBonus" class="no-spinner w-12 text-center bg-graphite-950/80 border border-gold-500/35 rounded-lg py-1 text-xl font-bold text-white focus:outline-none focus:border-gold-400" />
+                  </div>
+                  <span class="text-[10px] text-gray-500">Разбойник 4</span>
+                </div>
+
+                <div class="stat-shield p-3 text-center flex flex-col justify-between">
+                  <span class="text-[10px] uppercase tracking-wider text-gray-400 font-semibold">Класс доспеха</span>
+                  <div class="my-1">
+                    <input id="ac-value" type="number" data-bind-num="combat.ac" class="no-spinner w-16 mx-auto block text-center bg-graphite-950/80 border border-gold-500/45 rounded-lg py-1 text-2xl font-extrabold text-gold-300 focus:outline-none focus:border-gold-400" />
+                  </div>
+                  <div class="flex items-center justify-center gap-1.5 mt-1">
+                    <span class="text-[10px] text-gray-400">Зам.:</span>
+                    <input type="text" data-bind="combat.acNote1" title="Доп. заметка КД 1" class="w-9 text-center text-xs bg-graphite-950/90 border border-white/15 rounded px-1 py-0.5 text-gray-200 focus:outline-none focus:border-gold-400" />
+                    <input type="text" data-bind="combat.acNote2" title="Доп. заметка КД 2" class="w-9 text-center text-xs bg-graphite-950/90 border border-white/15 rounded px-1 py-0.5 text-gray-200 focus:outline-none focus:border-gold-400" />
+                  </div>
+                </div>
+
+                <div class="stat-shield p-3 text-center flex flex-col justify-between">
+                  <span class="text-[10px] uppercase tracking-wider text-gray-400 font-semibold">Инициатива</span>
+                  <button id="btn-roll-init" type="button" class="my-1 py-1 px-2 rounded-lg bg-graphite-950/80 hover:bg-gold-500/20 border border-gold-500/35 text-2xl font-extrabold text-white transition cursor-pointer" title="Бросить инициативу">
+                    <span id="init-display">+4</span>
+                  </button>
+                  <div class="flex items-center justify-center gap-1">
+                    <input id="init-manual" type="number" data-bind-num="combat.initiative" class="no-spinner w-12 text-center text-xs bg-graphite-950/90 border border-white/15 rounded px-1 py-0.5 text-gray-300 focus:outline-none focus:border-gold-400" title="Ручная правка инициативы" />
+                    <button id="btn-auto-init" type="button" class="text-[10px] text-gold-400 hover:underline cursor-pointer" title="Поставить модификатор Ловкости">Ловк.</button>
+                  </div>
+                </div>
+
+                <div class="stat-shield p-3 text-center flex flex-col justify-between">
+                  <span class="text-[10px] uppercase tracking-wider text-gray-400 font-semibold leading-tight">Пассив. внимат.</span>
+                  <div class="my-1">
+                    <input id="passive-perception" type="number" data-bind-num="combat.passivePerception" class="no-spinner w-16 mx-auto block text-center bg-graphite-950/80 border border-gold-500/35 rounded-lg py-1 text-2xl font-extrabold text-white focus:outline-none focus:border-gold-400" />
+                  </div>
+                  <button id="btn-auto-passive" type="button" class="text-[10px] text-gold-400 hover:underline cursor-pointer" title="Рассчитать как 10 + Внимательность">Авто (10+Нав.)</button>
+                </div>
+
+                <div class="col-span-2 sm:col-span-1 stat-shield p-3 text-center flex flex-col justify-between">
+                  <span class="text-[10px] uppercase tracking-wider text-gray-400 font-semibold">Вдохновение</span>
+                  <div class="my-1">
+                    <input id="inspiration-val" type="number" data-bind-num="combat.inspiration" class="no-spinner w-16 mx-auto block text-center bg-graphite-950/80 border border-gold-500/35 rounded-lg py-1 text-2xl font-extrabold text-amber-300 focus:outline-none focus:border-gold-400" />
+                  </div>
+                  <span class="text-[10px] text-gray-500">Очки вдохнов.</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="dnd-card p-4 sm:p-5 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Здоровье, кости хитов и спасброски от смерти</h2>
+                <div class="flex items-center gap-2 text-xs text-gray-400">
+                  <span>Пометка на листе:</span>
+                  <input type="text" data-bind="hp.sheetNote" class="w-24 px-2 py-0.5 rounded bg-graphite-900 border border-white/15 text-amber-200 text-xs focus:outline-none focus:border-gold-400" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                <div class="md:col-span-7 bg-graphite-900/75 border border-white/10 rounded-xl p-3.5 space-y-3">
+                  <div class="grid grid-cols-3 gap-2.5 items-end">
+                    <div>
+                      <label for="hp-current" class="block text-[11px] uppercase tracking-wider text-emerald-400 font-semibold mb-1">Текущие хиты</label>
+                      <input id="hp-current" type="number" data-bind-num="hp.current" class="no-spinner w-full text-center bg-graphite-950 border border-emerald-500/40 rounded-lg py-2 text-2xl font-extrabold text-emerald-300 focus:outline-none focus:border-emerald-400" />
+                    </div>
+                    <div>
+                      <label for="hp-max" class="block text-[11px] uppercase tracking-wider text-gray-400 font-semibold mb-1">Максимум</label>
+                      <input id="hp-max" type="number" data-bind-num="hp.max" class="no-spinner w-full text-center bg-graphite-950 border border-white/15 rounded-lg py-2 text-2xl font-bold text-white focus:outline-none focus:border-gold-400" />
+                    </div>
+                    <div>
+                      <label for="hp-temp" class="block text-[11px] uppercase tracking-wider text-sky-400 font-semibold mb-1">Временные</label>
+                      <input id="hp-temp" type="number" data-bind-num="hp.temp" placeholder="0" class="no-spinner w-full text-center bg-graphite-950 border border-sky-500/30 rounded-lg py-2 text-2xl font-bold text-sky-300 placeholder:text-gray-600 focus:outline-none focus:border-sky-400" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="w-full h-2.5 rounded-full bg-graphite-950 overflow-hidden border border-white/10">
+                      <div id="hp-bar" class="h-full bg-gradient-to-r from-emerald-500 to-lime-400 transition-all duration-300" style="width: 83%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-wrap items-center gap-2 pt-1">
+                    <input id="hp-delta-input" type="number" min="1" value="5" aria-label="Величина урона или лечения" class="no-spinner w-16 px-2 py-1.5 rounded-lg bg-graphite-950 border border-white/15 text-center text-sm font-semibold text-white focus:outline-none focus:border-gold-400" />
+                    <button id="btn-apply-damage" type="button" class="flex-1 min-w-[110px] px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-rose-600/85 hover:bg-rose-500 text-white transition cursor-pointer">
+                      − Урон
+                    </button>
+                    <button id="btn-apply-heal" type="button" class="flex-1 min-w-[110px] px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-emerald-600/85 hover:bg-emerald-500 text-white transition cursor-pointer">
+                      + Лечение
+                    </button>
+                  </div>
+                </div>
+
+                <div class="md:col-span-5 flex flex-col justify-between gap-3">
+                  <div class="bg-graphite-900/75 border border-white/10 rounded-xl p-3">
+                    <div class="flex items-center justify-between mb-1.5">
+                      <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Кость хитов</span>
+                      <button id="btn-roll-hitdie" type="button" class="text-xs px-2 py-0.5 rounded bg-gold-500/20 hover:bg-gold-500/30 text-gold-300 border border-gold-500/30 transition cursor-pointer">
+                        🎲 Бросить
+                      </button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                      <div>
+                        <label class="block text-[10px] text-gray-500">Текущие / всего</label>
+                        <input type="text" data-bind="hitDice.current" class="dnd-input w-full px-2 py-1 text-sm font-semibold text-center" />
+                      </div>
+                      <div>
+                        <label class="block text-[10px] text-gray-500">Кость (тип)</label>
+                        <input type="text" data-bind="hitDice.dieType" class="dnd-input w-full px-2 py-1 text-sm font-semibold text-center text-gold-300" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-graphite-900/75 border border-white/10 rounded-xl p-3">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold">Спасброски от смерти</span>
+                      <button id="btn-reset-death-saves" type="button" class="text-[10px] text-gray-400 hover:text-gold-300 cursor-pointer">Очистить</button>
+                    </div>
+                    <div class="space-y-1.5 text-xs">
+                      <div class="flex items-center justify-between">
+                        <span class="text-emerald-300 font-medium">Успехи</span>
+                        <div class="flex items-center gap-2">
+                          <input type="checkbox" data-death-save="successes.0" class="w-4 h-4 accent-emerald-500 rounded cursor-pointer" />
+                          <input type="checkbox" data-death-save="successes.1" class="w-4 h-4 accent-emerald-500 rounded cursor-pointer" />
+                          <input type="checkbox" data-death-save="successes.2" class="w-4 h-4 accent-emerald-500 rounded cursor-pointer" />
+                        </div>
+                      </div>
+                      <div class="flex items-center justify-between">
+                        <span class="text-rose-300 font-medium">Провалы</span>
+                        <div class="flex items-center gap-2">
+                          <input type="checkbox" data-death-save="failures.0" class="w-4 h-4 accent-rose-500 rounded cursor-pointer" />
+                          <input type="checkbox" data-death-save="failures.1" class="w-4 h-4 accent-rose-500 rounded cursor-pointer" />
+                          <input type="checkbox" data-death-save="failures.2" class="w-4 h-4 accent-rose-500 rounded cursor-pointer" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Серия приёмов и счётчик ядов -->
+            <section class="dnd-card p-4 sm:p-5 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Серия приёмов и счётчик ядов</h2>
+                <span id="combo-summary-hint" class="text-xs text-amber-200/90">Потрошение +2к6 • Промеж глаз +1к8 • Отравление +1к8 яд за приём</span>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-graphite-900/75 border border-gold-500/25 rounded-xl p-3.5 space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs uppercase tracking-wider text-gold-300 font-bold">⚡ Серия приёмов</span>
+                    <button id="btn-reset-combo" type="button" class="text-[11px] text-gray-400 hover:text-gold-300 cursor-pointer">Сброс</button>
+                  </div>
+
+                  <div>
+                    <label for="combo-move-select" class="block text-[10px] uppercase tracking-wider text-gray-400 mb-1">Выбор приёма</label>
+                    <select id="combo-move-select" data-bind="trackers.selectedComboMove" class="dnd-input w-full px-2.5 py-1.5 text-xs font-semibold text-gold-200 cursor-pointer">
+                      <option value="disembowel">ПОТРОШЕНИЕ (+2к6 за приём)</option>
+                      <option value="between_eyes">ПРОМЕЖ ГЛАЗ! (+1к8 + ошеломление)</option>
+                      <option value="poisoning">ОТРАВЛЕНИЕ (+1к8 яд + отравление)</option>
+                    </select>
+                  </div>
+
+                  <div class="flex items-center justify-between gap-2">
+                    <button id="btn-combo-dec" type="button" class="w-10 h-10 rounded-lg bg-graphite-800 hover:bg-gold-500/20 border border-white/10 text-lg font-bold text-white cursor-pointer" title="Уменьшить серию приёмов">−</button>
+                    <div class="flex items-center gap-1.5">
+                      <input id="combo-points-input" type="number" min="0" data-bind-num="trackers.comboPoints" class="no-spinner w-14 text-center bg-graphite-950 border border-gold-500/40 rounded-lg py-1.5 text-xl font-extrabold text-gold-300 focus:outline-none focus:border-gold-400" />
+                      <span class="text-gray-500 font-bold">/</span>
+                      <input id="combo-max-input" type="number" min="0" data-bind-num="trackers.comboMax" class="no-spinner w-12 text-center bg-graphite-950 border border-white/15 rounded-lg py-1.5 text-sm font-bold text-gray-300 focus:outline-none focus:border-gold-400" title="Максимум очков серии" />
+                    </div>
+                    <button id="btn-combo-inc" type="button" class="w-10 h-10 rounded-lg bg-graphite-800 hover:bg-gold-500/20 border border-white/10 text-lg font-bold text-white cursor-pointer" title="Увеличить серию приёмов">+</button>
+                  </div>
+
+                  <button id="btn-roll-combo-dmg" type="button" class="w-full py-1.5 px-3 rounded-lg text-xs font-semibold bg-gold-500/20 hover:bg-gold-500/30 text-gold-200 border border-gold-500/35 transition cursor-pointer">
+                    🎲 Бросить урон Потрошения (2к6 за приём)
+                  </button>
+                </div>
+
+                <div class="bg-graphite-900/75 border border-emerald-500/25 rounded-xl p-3.5 space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs uppercase tracking-wider text-emerald-300 font-bold">🧪 Счётчик ядов</span>
+                    <button id="btn-reset-poisons" type="button" class="text-[11px] text-gray-400 hover:text-emerald-300 cursor-pointer">Восстановить</button>
+                  </div>
+
+                  <div>
+                    <label for="poison-type-select" class="block text-[10px] uppercase tracking-wider text-gray-400 mb-1">Используемый яд</label>
+                    <select id="poison-type-select" data-bind="trackers.selectedPoison" class="dnd-input w-full px-2.5 py-1.5 text-xs font-semibold text-emerald-200 cursor-pointer">
+                      <option value="fast">Быстродействующий яд (3к8 ядом, спас. Тел. — половина)</option>
+                      <option value="crippling">Калечащий яд (отравление 1 мин., скорость ÷2, без реакций)</option>
+                      <option value="deadly">Смертоносный яд (отравление 1 мин., 1к8 в начале хода)</option>
+                    </select>
+                    <p id="poison-effect-hint" class="text-[11px] text-emerald-200/80 mt-1">Урон: 3к8 ядом • Спасбросок Тел. на половину урона</p>
+                  </div>
+
+                  <div class="flex items-center justify-between gap-2">
+                    <button id="btn-poison-dec" type="button" class="w-10 h-10 rounded-lg bg-graphite-800 hover:bg-emerald-500/20 border border-white/10 text-lg font-bold text-white cursor-pointer" title="Потратить дозу яда">−</button>
+                    <div class="flex items-center gap-1.5">
+                      <input id="poison-doses-input" type="number" min="0" data-bind-num="trackers.poisonDoses" class="no-spinner w-14 text-center bg-graphite-950 border border-emerald-500/40 rounded-lg py-1.5 text-xl font-extrabold text-emerald-300 focus:outline-none focus:border-emerald-400" />
+                      <span class="text-gray-500 font-bold">/</span>
+                      <input id="poison-max-input" type="number" min="0" data-bind-num="trackers.poisonMax" class="no-spinner w-12 text-center bg-graphite-950 border border-white/15 rounded-lg py-1.5 text-sm font-bold text-gray-300 focus:outline-none focus:border-emerald-400" title="Максимум доз яда" />
+                    </div>
+                    <button id="btn-poison-inc" type="button" class="w-10 h-10 rounded-lg bg-graphite-800 hover:bg-emerald-500/20 border border-white/10 text-lg font-bold text-white cursor-pointer" title="Добавить дозу яда">+</button>
+                  </div>
+
+                  <div class="flex items-center gap-2">
+                    <input type="text" data-bind="trackers.poisonTypeNote" placeholder="Заметка к яду..." class="dnd-input flex-1 min-w-0 px-2.5 py-1.5 text-xs text-emerald-100" />
+                    <button id="btn-roll-fast-poison" type="button" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-200 border border-emerald-500/35 transition cursor-pointer shrink-0">
+                      🎲 3d8
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="dnd-card p-4 sm:p-5 space-y-4">
+              <div class="flex items-center justify-between gap-2">
+                <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Атаки и оружие</h2>
+                <button id="btn-add-attack" type="button" class="no-print px-3 py-1.5 rounded-lg text-xs font-semibold bg-gold-500/20 hover:bg-gold-500/30 text-gold-300 border border-gold-500/35 transition cursor-pointer">
+                  + Добавить атаку
+                </button>
+              </div>
+              <div id="attacks-list" class="space-y-3"></div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-1">Заметки к атакам и боеприпасам</label>
+                <textarea rows="2" data-bind="hitDice.notes" class="dnd-input w-full p-2.5 text-xs text-gray-200"></textarea>
+              </div>
+            </section>
+
+            <section class="dnd-card p-4 sm:p-5 space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Черты и умения</h2>
+                <button type="button" data-jump-tab="features" class="no-print text-xs text-gold-400 hover:underline cursor-pointer">
+                  Полные описания (2–3 стр.) →
+                </button>
+              </div>
+              <div id="short-features-note-tag" class="hidden items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-400/35 text-xs text-amber-200">
+                <span class="font-semibold">Метка:</span>
+                <span id="short-features-note-preview"></span>
+              </div>
+              <textarea rows="8" data-bind="shortFeatures" class="dnd-input w-full p-3 text-xs sm:text-sm leading-relaxed text-gray-200"></textarea>
+              <div>
+                <label class="block text-[10px] uppercase tracking-wider text-gray-400 font-semibold mb-1">Быстрая заметка / счётчик подготовок</label>
+                <input type="text" data-bind="shortFeaturesNote" class="dnd-input w-full px-3 py-1.5 text-xs text-amber-200" />
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <!-- ВКЛАДКА 2: ОСОБЕННОСТИ, ЯДЫ И ЗАКЛИНАНИЯ -->
+      <div id="tab-features" class="tab-panel hidden space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="font-display text-lg font-bold text-gold-400">Особенности, приёмы серии, яды и заклинания</h2>
+            <p class="text-xs text-gray-400">Все тексты со 2-й и 3-й страниц листа Кая доступны для свободного редактирования</p>
+          </div>
+          <button id="btn-add-detail-block" type="button" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gold-500 text-graphite-950 hover:bg-gold-400 transition cursor-pointer">
+            + Новый раздел
+          </button>
+        </div>
+        <div id="detail-sections-container" class="space-y-5"></div>
+      </div>
+
+      <!-- ВКЛАДКА 3: СНАРЯЖЕНИЕ И ВЛАДЕНИЯ -->
+      <div id="tab-inventory" class="tab-panel hidden space-y-5">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <div class="lg:col-span-5 space-y-5">
+            <section class="dnd-card p-4 sm:p-5 space-y-3">
+              <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Прочие владения</h2>
+              <textarea rows="7" data-bind="proficienciesText" class="dnd-input w-full p-3 text-xs sm:text-sm leading-relaxed text-gray-200"></textarea>
+            </section>
+
+            <section class="dnd-card p-4 sm:p-5 space-y-3">
+              <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Владение языками</h2>
+              <input type="text" data-bind="languages" class="dnd-input w-full px-3 py-2 text-sm text-gold-200" />
+            </section>
+
+            <section class="dnd-card p-4 sm:p-5 space-y-3">
+              <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Доспехи и доп. предметы</h2>
+              <div>
+                <label class="block text-[10px] uppercase tracking-wider text-gray-400 mb-1">Доспех</label>
+                <input type="text" data-bind="equipment.armor" class="dnd-input w-full px-3 py-1.5 text-sm" />
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-wider text-gray-400 mb-1">Щит</label>
+                <input type="text" data-bind="equipment.shield" class="dnd-input w-full px-3 py-1.5 text-sm" />
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-wider text-gray-400 mb-1">Дополнительные предметы</label>
+                <textarea rows="3" data-bind="equipment.extraItems" class="dnd-input w-full p-2.5 text-xs sm:text-sm"></textarea>
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase tracking-wider text-gray-400 mb-1">Пометки и счётчики с листа</label>
+                <input type="text" data-bind="equipment.countersNote" class="dnd-input w-full px-3 py-1.5 text-xs text-amber-200" />
+              </div>
+            </section>
+          </div>
+
+          <div class="lg:col-span-7 space-y-5">
+            <section class="dnd-card p-4 sm:p-5 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Монеты</h2>
+                <span id="coins-total-gp" class="text-xs font-semibold text-gold-300">Всего в золоте: 0 зм</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="bg-graphite-900/75 border border-amber-700/35 rounded-xl p-3 space-y-2">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-amber-400">Бронзовые / Медные</span>
+                    <span class="text-[10px] text-gray-500">100 = 1 зм</span>
+                  </div>
+                  <div class="flex items-center justify-between gap-1.5">
+                    <button type="button" data-coin-step="copper:-1" class="w-8 h-8 rounded bg-graphite-800 hover:bg-amber-500/20 text-sm font-bold cursor-pointer">−</button>
+                    <input type="number" min="0" data-bind-num="equipment.coins.copper" class="no-spinner w-full text-center bg-graphite-950 border border-amber-600/30 rounded py-1 text-base font-bold text-amber-300 focus:outline-none focus:border-amber-400" />
+                    <button type="button" data-coin-step="copper:1" class="w-8 h-8 rounded bg-graphite-800 hover:bg-amber-500/20 text-sm font-bold cursor-pointer">+</button>
+                  </div>
+                </div>
+
+                <div class="bg-graphite-900/75 border border-slate-400/30 rounded-xl p-3 space-y-2">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-slate-200">Серебряные</span>
+                    <span class="text-[10px] text-gray-500">10 = 1 зм</span>
+                  </div>
+                  <div class="flex items-center justify-between gap-1.5">
+                    <button type="button" data-coin-step="silver:-1" class="w-8 h-8 rounded bg-graphite-800 hover:bg-slate-500/20 text-sm font-bold cursor-pointer">−</button>
+                    <input type="number" min="0" data-bind-num="equipment.coins.silver" class="no-spinner w-full text-center bg-graphite-950 border border-slate-400/30 rounded py-1 text-base font-bold text-slate-100 focus:outline-none focus:border-slate-300" />
+                    <button type="button" data-coin-step="silver:1" class="w-8 h-8 rounded bg-graphite-800 hover:bg-slate-500/20 text-sm font-bold cursor-pointer">+</button>
+                  </div>
+                </div>
+
+                <div class="bg-graphite-900/75 border border-gold-500/40 rounded-xl p-3 space-y-2">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-gold-300">Золотые</span>
+                    <span class="text-[10px] text-gray-500">зм</span>
+                  </div>
+                  <div class="flex items-center justify-between gap-1.5">
+                    <button type="button" data-coin-step="gold:-1" class="w-8 h-8 rounded bg-graphite-800 hover:bg-gold-500/20 text-sm font-bold cursor-pointer">−</button>
+                    <input type="number" min="0" data-bind-num="equipment.coins.gold" class="no-spinner w-full text-center bg-graphite-950 border border-gold-500/40 rounded py-1 text-base font-bold text-gold-300 focus:outline-none focus:border-gold-400" />
+                    <button type="button" data-coin-step="gold:1" class="w-8 h-8 rounded bg-graphite-800 hover:bg-gold-500/20 text-sm font-bold cursor-pointer">+</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="dnd-card p-4 sm:p-5 space-y-3">
+              <h2 class="font-display text-sm uppercase tracking-wider text-gold-400 font-bold">Снаряжение</h2>
+              <textarea rows="12" data-bind="equipment.gear" class="dnd-input w-full p-3 text-xs sm:text-sm leading-relaxed text-gray-200"></textarea>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div id="print-extra-content" class="print-only-block hidden"></div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    const STORAGE_KEY = 'dnd5e_character_sheet_kai_v2';
+    const CUSTOM_PRESET_KEY = 'dnd5e_character_sheet_kai_custom_preset_v1';
+    const CLOUD_PROFILE_KEY = 'dnd5e_character_sheet_cloud_profile_v1';
+
+    const appId = typeof __app_id !== 'undefined' && __app_id ? __app_id : 'dnd5e-kai-sheet';
+    let cloudDb = null;
+    let cloudAuth = null;
+    let cloudUser = null;
+    let cloudUnsubscribe = null;
+    let isApplyingRemoteState = false;
+    let cloudProfileId = loadCloudProfileId();
+
+    let saveTimer = null;
+    let activeTab = 'sheet';
+    let riggedDiceEnabled = true;
+    let dicePanelCollapsed = false;
+
+    const diceCalcState = {
+      entries: [],
+      nextOp: '+'
+    };
+
+    function getByPath(obj, path) {
+      if (!obj || !path) return undefined;
+      return String(path)
+        .split('.')
+        .reduce((acc, key) => (acc !== undefined && acc !== null ? acc[key] : undefined), obj);
+    }
+
+    function setByPath(obj, path, value) {
+      if (!obj || !path) return;
+      const parts = String(path).split('.');
+      let cur = obj;
+      for (let i = 0; i < parts.length - 1; i++) {
+        const key = parts[i];
+        if (cur[key] === undefined || cur[key] === null || typeof cur[key] !== 'object') {
+          cur[key] = {};
+        }
+        cur = cur[key];
+      }
+      cur[parts[parts.length - 1]] = value;
+    }
+
+    function mergeWithDefaults(saved, defaults) {
+      if (!saved || typeof saved !== 'object') {
+        return JSON.parse(JSON.stringify(defaults));
+      }
+      const base = JSON.parse(JSON.stringify(defaults));
+      const deepMerge = (target, src) => {
+        if (!src || typeof src !== 'object') return target;
+        for (const key of Object.keys(src)) {
+          const srcVal = src[key];
+          if (srcVal === undefined) continue;
+          if (Array.isArray(srcVal)) {
+            target[key] = JSON.parse(JSON.stringify(srcVal));
+          } else if (srcVal !== null && typeof srcVal === 'object') {
+            if (!target[key] || typeof target[key] !== 'object' || Array.isArray(target[key])) {
+              target[key] = {};
+            }
+            deepMerge(target[key], srcVal);
+          } else {
+            target[key] = srcVal;
+          }
+        }
+        return target;
+      };
+      return deepMerge(base, saved);
+    }
+
+    function getActiveBaseData() {
+      const defaults = getDefaultCharacterData();
+      try {
+        const rawPreset = localStorage.getItem(CUSTOM_PRESET_KEY);
+        if (rawPreset) {
+          return mergeWithDefaults(JSON.parse(rawPreset), defaults);
+        }
+      } catch (_e) {
+        // Игнорируем ошибку чтения пользовательского шаблона
+      }
+      return defaults;
+    }
+
+    function saveValuesAsPreset() {
+      persistCurrentStateNow();
+      try {
+        localStorage.setItem(CUSTOM_PRESET_KEY, JSON.stringify(state));
+        showToast('💾 Текущие значения зафиксированы как базовый шаблон', 'success');
+      } catch (err) {
+        console.error('Ошибка сохранения шаблона:', err);
+        showToast('Не удалось зафиксировать шаблон', 'error');
+      }
+    }
+
+    function scheduleSave() {
+      const indicator = document.getElementById('save-indicator');
+      if (indicator) {
+        indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400"></span><span>Сохранение...</span>';
+      }
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        persistCurrentStateNow();
+      }, 220);
+    }
+
+    function getDiceCount() {
+      const input = document.getElementById('dice-count-input');
+      const val = Math.min(50, Math.max(1, Number(input?.value) || 1));
+      if (input && String(input.value) !== String(val)) {
+        input.value = String(val);
+      }
+      return val;
+    }
+
+    function setDiceCount(nextVal) {
+      const clamped = Math.min(50, Math.max(1, Number(nextVal) || 1));
+      const input = document.getElementById('dice-count-input');
+      if (input) {
+        input.value = String(clamped);
+      }
+      document.querySelectorAll('[data-dice-count-preset]').forEach((btn) => {
+        const isMatch = Number(btn.getAttribute('data-dice-count-preset')) === clamped;
+        btn.className = isMatch
+          ? 'dice-count-preset px-1.5 py-1 rounded bg-gold-500/20 text-gold-300 border border-gold-500/40 text-xs font-mono transition cursor-pointer'
+          : 'dice-count-preset px-1.5 py-1 rounded bg-graphite-800 hover:bg-gold-500/20 hover:text-gold-300 border border-white/10 text-xs font-mono transition cursor-pointer';
+      });
+      return clamped;
+    }
+
+    function computeCalculatorTotal() {
+      if (!diceCalcState.entries.length) return 0;
+      let acc = 0;
+      diceCalcState.entries.forEach((entry, idx) => {
+        const val = Number(entry.value) || 0;
+        if (idx === 0) {
+          acc = entry.op === '-' ? -val : val;
+          return;
+        }
+        switch (entry.op) {
+          case '-':
+            acc -= val;
+            break;
+          case '*':
+            acc *= val;
+            break;
+          case '/':
+            acc = val !== 0 ? Math.trunc(acc / val) : acc;
+            break;
+          case '+':
+          default:
+            acc += val;
+            break;
+        }
+      });
+      return acc;
+    }
+
+    function renderDiceCalculator() {
+      const exprEl = document.getElementById('calc-expression-display');
+      const totalEl = document.getElementById('calc-total-display');
+      const badgeEl = document.getElementById('calc-mode-badge');
+
+      const opNames = {
+        '+': 'Режим: + Сумма',
+        '-': 'Режим: − Вычитание',
+        '*': 'Режим: × Умножение',
+        '/': 'Режим: ÷ Деление'
+      };
+
+      if (badgeEl) {
+        badgeEl.textContent = opNames[diceCalcState.nextOp] || opNames['+'];
+      }
+
+      const opButtons = {
+        '+': document.getElementById('btn-calc-op-add'),
+        '-': document.getElementById('btn-calc-op-sub'),
+        '*': document.getElementById('btn-calc-op-mul'),
+        '/': document.getElementById('btn-calc-op-div')
+      };
+
+      Object.entries(opButtons).forEach(([opKey, btn]) => {
+        if (!btn) return;
+        const active = diceCalcState.nextOp === opKey;
+        btn.className = active
+          ? 'px-2 py-1 rounded bg-gold-500/25 text-gold-200 border border-gold-400 font-mono font-bold cursor-pointer'
+          : 'px-2 py-1 rounded bg-graphite-800 hover:bg-gold-500/15 text-gray-300 hover:text-gold-200 border border-white/10 font-mono font-bold cursor-pointer';
+      });
+
+      if (!diceCalcState.entries.length) {
+        if (exprEl) exprEl.textContent = '0';
+        if (totalEl) totalEl.textContent = '0';
+        return;
+      }
+
+      const parts = diceCalcState.entries.map((entry, idx) => {
+        const val = Number(entry.value) || 0;
+        if (idx === 0) {
+          return entry.op === '-' ? `-${val}` : `${val}`;
+        }
+        const symbol = entry.op === '*' ? '×' : entry.op === '/' ? '÷' : entry.op === '-' ? '−' : '+';
+        return `${symbol} ${val}`;
+      });
+
+      if (exprEl) exprEl.textContent = parts.join(' ');
+      if (totalEl) totalEl.textContent = String(computeCalculatorTotal());
+    }
+
+    function recordRollInCalculator(res) {
+      if (!res || typeof res.total !== 'number' || Number.isNaN(res.total)) return;
+      diceCalcState.entries.push({
+        label: res.label || 'Бросок',
+        value: res.total,
+        op: diceCalcState.nextOp || '+'
+      });
+      if (diceCalcState.nextOp === '*' || diceCalcState.nextOp === '/') {
+        diceCalcState.nextOp = '+';
+      }
+      renderDiceCalculator();
+    }
+
+    function sanitizeProfileId(raw) {
+      const cleaned = String(raw || '')
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9_-]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      return cleaned || 'kai-main';
+    }
+
+    function loadCloudProfileId() {
+      try {
+        const saved = localStorage.getItem(CLOUD_PROFILE_KEY);
+        return sanitizeProfileId(saved || 'kai-main');
+      } catch (_e) {
+        return 'kai-main';
+      }
+    }
+
+    function updateCloudBadge(statusText, tone = 'info') {
+      const badge = document.getElementById('cloud-sync-badge');
+      const label = document.getElementById('cloud-profile-label');
+      const input = document.getElementById('cloud-profile-input');
+      if (label) label.textContent = cloudProfileId;
+      if (input && document.activeElement !== input) {
+        input.value = cloudProfileId;
+      }
+      if (!badge) return;
+      const styles = {
+        info: 'inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/30',
+        ok: 'inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30',
+        warn: 'inline-flex items-center gap-1 text-xs px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30'
+      };
+      badge.className = styles[tone] || styles.info;
+      badge.title = statusText || `Профиль синхронизации: ${cloudProfileId}`;
+    }
+
+    function getCloudDocRef() {
+      if (!cloudDb || !cloudUser) return null;
+      return doc(cloudDb, 'artifacts', appId, 'public', 'data', 'character_sheets', cloudProfileId);
+    }
+
+    function serializeStateForCloud(targetState) {
+      const clone = JSON.parse(JSON.stringify(targetState));
+      if (clone?.detailCategories) {
+        clone.detailCategoriesJson = JSON.stringify(clone.detailCategories);
+      }
+      return clone;
+    }
+
+    function deserializeStateFromCloud(rawDoc) {
+      if (!rawDoc || typeof rawDoc !== 'object') return null;
+      const merged = mergeWithDefaults(rawDoc, getDefaultCharacterData());
+      if (typeof rawDoc.detailCategoriesJson === 'string' && rawDoc.detailCategoriesJson.trim()) {
+        try {
+          const parsedCats = JSON.parse(rawDoc.detailCategoriesJson);
+          if (Array.isArray(parsedCats) && parsedCats.length > 0) {
+            merged.detailCategories = parsedCats;
+          }
+        } catch (_e) {
+          // Игнорируем некорректный JSON запасного поля
+        }
+      }
+      delete merged.detailCategoriesJson;
+      return merged;
+    }
+
+    async function pushStateToCloud(showSuccessToast = false) {
+      const docRef = getCloudDocRef();
+      if (!docRef) return;
+      try {
+        await setDoc(
+          docRef,
+          {
+            sheetData: serializeStateForCloud(state),
+            updatedAt: Date.now(),
+            updatedBy: cloudUser.uid
+          },
+          { merge: true }
+        );
+        updateCloudBadge(`Синхронизировано • ID: ${cloudProfileId}`, 'ok');
+        if (showSuccessToast) {
+          showToast(`☁ Лист сохранён в облако (ID: ${cloudProfileId})`, 'success');
+        }
+      } catch (err) {
+        console.error('Ошибка сохранения в облако:', err);
+        updateCloudBadge(`Локально (нет доступа к облаку) • ID: ${cloudProfileId}`, 'warn');
+      }
+    }
+
+    function subscribeToCloudProfile() {
+      if (typeof cloudUnsubscribe === 'function') {
+        cloudUnsubscribe();
+        cloudUnsubscribe = null;
+      }
+      const docRef = getCloudDocRef();
+      if (!docRef) return;
+
+      cloudUnsubscribe = onSnapshot(
+        docRef,
+        (snap) => {
+          if (!snap.exists()) {
+            updateCloudBadge(`Новый профиль • ID: ${cloudProfileId}`, 'info');
+            pushStateToCloud(false);
+            return;
+          }
+          const data = snap.data();
+          if (!data || !data.sheetData) return;
+          if (data.updatedBy && cloudUser && data.updatedBy === cloudUser.uid && document.hasFocus()) {
+            updateCloudBadge(`Онлайн • ID: ${cloudProfileId}`, 'ok');
+            return;
+          }
+          const remoteState = deserializeStateFromCloud(data.sheetData);
+          if (!remoteState) return;
+          isApplyingRemoteState = true;
+          state = remoteState;
+          recalculateAbilityMods(false);
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          } catch (_e) {
+            // Игнорируем ошибки локального кэша
+          }
+          renderAll();
+          isApplyingRemoteState = false;
+          updateCloudBadge(`Обновлено с другого устройства • ID: ${cloudProfileId}`, 'ok');
+        },
+        (err) => {
+          console.error('Ошибка подписки на облачный лист:', err);
+          updateCloudBadge(`Локальный режим • ID: ${cloudProfileId}`, 'warn');
+        }
+      );
+    }
+
+    async function switchCloudProfile(newProfileId) {
+      const normalized = sanitizeProfileId(newProfileId);
+      cloudProfileId = normalized;
+      try {
+        localStorage.setItem(CLOUD_PROFILE_KEY, cloudProfileId);
+      } catch (_e) {
+        // Игнорируем ошибку записи
+      }
+      updateCloudBadge(`Загрузка профиля ${cloudProfileId}...`, 'info');
+
+      if (!cloudDb || !cloudUser) {
+        showToast(`Выбран локальный ID: ${cloudProfileId}`, 'info');
+        return;
+      }
+
+      subscribeToCloudProfile();
+      try {
+        const docRef = getCloudDocRef();
+        const snap = await getDoc(docRef);
+        if (snap.exists() && snap.data()?.sheetData) {
+          const loaded = deserializeStateFromCloud(snap.data().sheetData);
+          if (loaded) {
+            isApplyingRemoteState = true;
+            state = loaded;
+            recalculateAbilityMods(false);
+            try {
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (_e) {
+              // Игнорируем ошибку локального кэша
+            }
+            renderAll();
+            isApplyingRemoteState = false;
+            showToast(`☁ Загружен лист из облака (ID: ${cloudProfileId})`, 'success');
+            return;
+          }
+        }
+        await pushStateToCloud(true);
+      } catch (err) {
+        console.error('Ошибка переключения профиля облака:', err);
+        showToast('Не удалось загрузить профиль из облака', 'error');
+      }
+    }
+
+    async function initCloudSync() {
+      updateCloudBadge(`Подключение к облаку (${cloudProfileId})...`, 'info');
+      try {
+        if (typeof __firebase_config === 'undefined' || !__firebase_config) {
+          updateCloudBadge(`Локальное хранилище • ID: ${cloudProfileId}`, 'warn');
+          return;
+        }
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        cloudAuth = getAuth(app);
+        cloudDb = getFirestore(app);
+
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          const cred = await signInWithCustomToken(cloudAuth, __initial_auth_token);
+          cloudUser = cred.user;
+        } else {
+          const cred = await signInAnonymously(cloudAuth);
+          cloudUser = cred.user;
+        }
+
+        if (!cloudUser) {
+          updateCloudBadge(`Локальный режим • ID: ${cloudProfileId}`, 'warn');
+          return;
+        }
+
+        const docRef = getCloudDocRef();
+        const snap = await getDoc(docRef);
+        if (snap.exists() && snap.data()?.sheetData) {
+          const cloudState = deserializeStateFromCloud(snap.data().sheetData);
+          if (cloudState) {
+            isApplyingRemoteState = true;
+            state = cloudState;
+            recalculateAbilityMods(false);
+            try {
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (_e) {
+              // Игнорируем ошибку локального кэша
+            }
+            renderAll();
+            isApplyingRemoteState = false;
+          }
+        } else {
+          await pushStateToCloud(false);
+        }
+
+        subscribeToCloudProfile();
+        updateCloudBadge(`Синхронизация активна • ID: ${cloudProfileId}`, 'ok');
+      } catch (err) {
+        console.error('Ошибка инициализации облачной синхронизации:', err);
+        updateCloudBadge(`Локальное сохранение • ID: ${cloudProfileId}`, 'warn');
+      }
+    }
+
+    function loadInitialState() {
+      const fallback = getActiveBaseData();
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return fallback;
+        return mergeWithDefaults(JSON.parse(raw), fallback);
+      } catch (err) {
+        console.error('Ошибка загрузки состояния из localStorage:', err);
+        return fallback;
+      }
+    }
+
+    function persistCurrentStateNow() {
+      clearTimeout(saveTimer);
+      const indicator = document.getElementById('save-indicator');
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        if (indicator) {
+          indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span>Сохранено</span>';
+        }
+      } catch (err) {
+        console.error('Ошибка сохранения:', err);
+        if (indicator) {
+          indicator.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-400"></span><span>Ошибка сохранения</span>';
+        }
+      }
+      if (!isApplyingRemoteState && cloudDb && cloudUser) {
+        pushStateToCloud(false);
+      }
+    }
+
+    function exportStateToJson() {
+      persistCurrentStateNow();
+      try {
+        const dataStr = JSON.stringify(state, null, 2);
+        const blob = new Blob([dataStr], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const safeName = String(state?.header?.name || 'kai').trim().replace(/[^\wа-яА-ЯёЁ-]+/g, '_') || 'kai';
+        a.href = url;
+        a.download = `dnd5e-${safeName}-values.json`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        showToast('⬇ Файл со значениями сохранён', 'success');
+      } catch (err) {
+        console.error('Ошибка экспорта JSON:', err);
+        showToast('Ошибка при сохранении файла', 'error');
+      }
+    }
+
+    function importStateFromJsonFile(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(String(reader.result || ''));
+          if (!parsed || typeof parsed !== 'object') {
+            showToast('Некорректный формат файла', 'error');
+            return;
+          }
+          state = mergeWithDefaults(parsed, getDefaultCharacterData());
+          recalculateAbilityMods(false);
+          persistCurrentStateNow();
+          renderAll();
+          showToast('⬆ Значения загружены из файла и сохранены', 'success');
+        } catch (err) {
+          console.error('Ошибка импорта JSON:', err);
+          showToast('Не удалось прочитать файл JSON', 'error');
+        }
+      };
+      reader.readAsText(file, 'utf-8');
+    }
+
+    function openConfirmModal(title, message, confirmLabel, onConfirm) {
+      const backdrop = document.getElementById('modal-backdrop');
+      const titleEl = document.getElementById('modal-title');
+      const msgEl = document.getElementById('modal-message');
+      const confirmBtn = document.getElementById('modal-confirm');
+      const cancelBtn = document.getElementById('modal-cancel');
+      if (!backdrop || !titleEl || !msgEl || !confirmBtn || !cancelBtn) return;
+
+      titleEl.textContent = title;
+      msgEl.textContent = message;
+      confirmBtn.textContent = confirmLabel || 'Подтвердить';
+
+      const close = () => {
+        backdrop.classList.add('hidden');
+        backdrop.classList.remove('flex');
+        confirmBtn.onclick = null;
+        cancelBtn.onclick = null;
+      };
+
+      cancelBtn.onclick = close;
+      confirmBtn.onclick = () => {
+        close();
+        if (typeof onConfirm === 'function') onConfirm();
+      };
+
+      backdrop.classList.remove('hidden');
+      backdrop.classList.add('flex');
+    }
+
+    function calcAbilityMod(score) {
+      const n = Number(score);
+      if (Number.isNaN(n)) return 0;
+      return Math.floor((n - 10) / 2);
+    }
+
+    function formatMod(num) {
+      const n = Number(num) || 0;
+      return n >= 0 ? `+${n}` : `${n}`;
+    }
+
+    function recalculateAbilityMods(forceAll = false) {
+      for (const key of Object.keys(state.abilities)) {
+        const ab = state.abilities[key];
+        if (forceAll) {
+          ab.manualMod = false;
+        }
+        if (!ab.manualMod) {
+          ab.mod = calcAbilityMod(ab.score);
+        }
+      }
+    }
+
+    function getSaveBonus(abilityKey) {
+      const saveCfg = state.savingThrows[abilityKey] || { prof: false, expertise: false, manualOverride: null };
+      if (saveCfg.manualOverride !== null && saveCfg.manualOverride !== undefined && saveCfg.manualOverride !== '') {
+        return Number(saveCfg.manualOverride) || 0;
+      }
+      const abMod = Number(state.abilities[abilityKey]?.mod) || 0;
+      const pb = Number(state.combat.proficiencyBonus) || 0;
+      const mult = saveCfg.expertise ? 2 : saveCfg.prof ? 1 : 0;
+      return abMod + pb * mult;
+    }
+
+    function getSkillBonus(skill) {
+      if (skill.manualOverride !== null && skill.manualOverride !== undefined && skill.manualOverride !== '') {
+        return Number(skill.manualOverride) || 0;
+      }
+      const abMod = Number(state.abilities[skill.ability]?.mod) || 0;
+      const pb = Number(state.combat.proficiencyBonus) || 0;
+      const mult = skill.expertise ? 2 : skill.prof ? 1 : 0;
+      return abMod + pb * mult;
+    }
+
+    function syncRiggedUi() {
+      const btn = document.getElementById('btn-rigged-mode');
+      if (!btn) return;
+      btn.textContent = riggedDiceEnabled ? '🍀 Удача' : '🎲 Честно';
+    }
+
+    function syncDicePanelCollapse() {
+      const body = document.getElementById('dice-collapsible-body');
+      const toggleBtn = document.getElementById('btn-toggle-dice-panel');
+      const iconEl = document.getElementById('dice-toggle-icon');
+      const labelEl = document.getElementById('dice-toggle-label');
+      if (!body || !toggleBtn) return;
+
+      body.classList.toggle('hidden', dicePanelCollapsed);
+      toggleBtn.setAttribute('aria-expanded', String(!dicePanelCollapsed));
+      if (iconEl) iconEl.textContent = dicePanelCollapsed ? '▸' : '▾';
+      if (labelEl) labelEl.textContent = dicePanelCollapsed ? 'Развернуть' : 'Свернуть';
+    }
+
+    function toggleDicePanel() {
+      dicePanelCollapsed = !dicePanelCollapsed;
+      syncDicePanelCollapse();
+    }
+
+    function rollSingleDie(sides) {
+      const maxSides = Math.max(2, Number(sides) || 20);
+      const u = Math.random();
+      if (!riggedDiceEnabled) {
+        return Math.floor(u * maxSides) + 1;
+      }
+      const powerEl = document.getElementById('rigged-power');
+      const power = Math.min(1, Math.max(0.1, Number(powerEl?.value) || 0.4));
+      const skewed = Math.pow(u, power);
+      return Math.min(maxSides, Math.max(1, Math.floor(skewed * maxSides) + 1));
+    }
+
+    function toggleLuckMode() {
+      riggedDiceEnabled = !riggedDiceEnabled;
+      syncRiggedUi();
+      showToast(
+        riggedDiceEnabled ? '🍀 Режим удачи включён' : '🎲 Режим удачи выключен',
+        riggedDiceEnabled ? 'success' : 'info'
+      );
+    }
+
+    function rollDiceFormula(formula, label = 'Бросок') {
+      const cleaned = String(formula || '1d20').replace(/к/gi, 'd').replace(/\s+/g, '');
+      const tokenRegex = /^([+-]?)(\d*)d(\d+)([+-]\d+)?$/i;
+      const match = cleaned.match(tokenRegex);
+
+      if (!match) {
+        const flat = Number(cleaned);
+        if (!Number.isNaN(flat)) {
+          return { label, formula: cleaned, rolls: [], modifier: flat, total: flat };
+        }
+        const fallbackRoll = rollSingleDie(20);
+        return { label, formula: '1d20', rolls: [fallbackRoll], modifier: 0, total: fallbackRoll };
+      }
+
+      const sign = match[1] === '-' ? -1 : 1;
+      const count = Math.min(50, Math.max(1, Number(match[2] || 1)));
+      const sides = Math.max(2, Number(match[3] || 20));
+      const mod = Number(match[4] || 0);
+
+      const rolls = [];
+      let sum = 0;
+      for (let i = 0; i < count; i++) {
+        const r = rollSingleDie(sides);
+        rolls.push(r);
+        sum += r;
+      }
+      const total = sign * sum + mod;
+      return { label, formula: cleaned, rolls, modifier: mod, total };
+    }
+
+    function announceRoll(res) {
+      const display = document.getElementById('dice-result-display');
+      recordRollInCalculator(res);
+      if (!display) return;
+      const rollsText = res.rolls.length ? `[${res.rolls.join(', ')}]` : '';
+      const modText = res.modifier ? ` ${formatMod(res.modifier)}` : '';
+      display.innerHTML = `
+        <span class="px-2 py-0.5 rounded bg-gold-500/20 text-gold-300 font-semibold border border-gold-500/30">${escapeHtml(res.label)}</span>
+        <span class="font-mono text-xs text-gray-300">${escapeHtml(res.formula)} ${escapeHtml(rollsText)}${escapeHtml(modText)}</span>
+        <span class="text-base font-extrabold text-white bg-graphite-800 px-2.5 py-0.5 rounded-lg border border-gold-500/40">= ${res.total}</span>
+      `;
+    }
+
+    function escapeHtml(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const palette = {
+        success: 'bg-emerald-950/95 border-emerald-500/45 text-emerald-200',
+        error: 'bg-rose-950/95 border-rose-500/45 text-rose-200',
+        info: 'bg-graphite-850/95 border-gold-500/40 text-gold-200'
+      };
+      const toast = document.createElement('div');
+      toast.className = `px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-medium shadow-xl animate-pop ${palette[type] || palette.info}`;
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.25s ease';
+        setTimeout(() => toast.remove(), 260);
+      }, 2400);
+    }
+
+    function syncBoundInputs() {
+      document.querySelectorAll('[data-bind]').forEach((el) => {
+        const path = el.getAttribute('data-bind');
+        const val = getByPath(state, path);
+        if (val !== undefined && el.value !== String(val ?? '')) {
+          el.value = val ?? '';
+        }
+      });
+
+      document.querySelectorAll('[data-bind-num]').forEach((el) => {
+        const path = el.getAttribute('data-bind-num');
+        const val = getByPath(state, path);
+        const formatted = val === undefined || val === null ? '' : String(val);
+        if (el.value !== formatted) {
+          el.value = formatted;
+        }
+      });
+
+      document.querySelectorAll('[data-death-save]').forEach((el) => {
+        const path = el.getAttribute('data-death-save');
+        el.checked = Boolean(getByPath(state.deathSaves, path));
+      });
+    }
+
+    function getDefaultCharacterData() {
+      return {
+        header: {
+          name: 'Кай',
+          classLevel: 'Разбойник 4',
+          background: 'преступник',
+          playerName: 'Сережа',
+          race: 'Ноч. Эльф',
+          speed: '30',
+          alignment: '',
+          xp: '18 015'
+        },
+        abilities: {
+          str: { name: 'Сила', score: 10, mod: 0, manualMod: false },
+          dex: { name: 'Ловкость', score: 18, mod: 4, manualMod: false },
+          con: { name: 'Телосложение', score: 14, mod: 2, manualMod: false },
+          int: { name: 'Интеллект', score: 16, mod: 3, manualMod: false },
+          wis: { name: 'Мудрость', score: 8, mod: -1, manualMod: false },
+          cha: { name: 'Харизма', score: 10, mod: 0, manualMod: false }
+        },
+        combat: {
+          proficiencyBonus: 2,
+          ac: 16,
+          acNote1: '12',
+          acNote2: '13',
+          initiative: 4,
+          passivePerception: 11,
+          inspiration: 2
+        },
+        hp: {
+          current: 30,
+          max: 36,
+          temp: '',
+          sheetNote: '51 (с листа)'
+        },
+        hitDice: {
+          current: '4к8',
+          dieType: 'к8',
+          notes: 'Заметка на листе: ручной арбалет / 30/120, +7, 1к6+4, крит 15-20'
+        },
+        deathSaves: {
+          successes: [false, false, false],
+          failures: [false, false, false]
+        },
+        savingThrows: {
+          str: { prof: false, expertise: false, manualOverride: null },
+          dex: { prof: false, expertise: false, manualOverride: null },
+          con: { prof: false, expertise: false, manualOverride: null },
+          int: { prof: false, expertise: false, manualOverride: null },
+          wis: { prof: false, expertise: false, manualOverride: null },
+          cha: { prof: false, expertise: false, manualOverride: null }
+        },
+        skills: [
+          { id: 'acrobatics', name: 'Акробатика', ability: 'dex', prof: false, expertise: false, manualOverride: 17, note: '' },
+          { id: 'sleight_of_hand', name: 'Ловкость рук', ability: 'dex', prof: false, expertise: false, manualOverride: 16, note: '' },
+          { id: 'stealth', name: 'Скрытность', ability: 'dex', prof: false, expertise: false, manualOverride: null, note: '' },
+          { id: 'arcana', name: 'Магия', ability: 'int', prof: false, expertise: false, manualOverride: 3, note: '' },
+          { id: 'history', name: 'История', ability: 'int', prof: false, expertise: false, manualOverride: 3, note: '' },
+          { id: 'investigation', name: 'Анализ', ability: 'int', prof: false, expertise: false, manualOverride: 9, note: '' },
+          { id: 'nature', name: 'Природа', ability: 'int', prof: false, expertise: false, manualOverride: 3, note: '' },
+          { id: 'religion', name: 'Религия', ability: 'int', prof: false, expertise: false, manualOverride: 3, note: '' },
+          { id: 'animal_handling', name: 'Уход за животными', ability: 'wis', prof: false, expertise: false, manualOverride: -1, note: '' },
+          { id: 'insight', name: 'Проницательность', ability: 'wis', prof: false, expertise: false, manualOverride: -1, note: '' },
+          { id: 'medicine', name: 'Медицина', ability: 'wis', prof: false, expertise: false, manualOverride: -1, note: '' },
+          { id: 'perception', name: 'Внимательность', ability: 'wis', prof: false, expertise: false, manualOverride: -1, note: 'Заметки на листе' },
+          { id: 'survival', name: 'Выживание', ability: 'wis', prof: false, expertise: false, manualOverride: -1, note: '' },
+          { id: 'deception', name: 'Обман', ability: 'cha', prof: false, expertise: false, manualOverride: 6, note: '' },
+          { id: 'intimidation', name: 'Запугивание', ability: 'cha', prof: false, expertise: false, manualOverride: 0, note: '' },
+          { id: 'performance', name: 'Выступление', ability: 'cha', prof: false, expertise: false, manualOverride: 0, note: '' },
+          { id: 'persuasion', name: 'Убеждение', ability: 'cha', prof: false, expertise: false, manualOverride: 0, note: '' }
+        ],
+        attacks: [
+          {
+            id: 'atk-rapier',
+            name: 'Рапира',
+            attackBonus: '+6',
+            damage: '1к8+4',
+            damageType: 'колющий / 2фнт.',
+            notes: ''
+          }
+        ],
+        trackers: {
+          selectedComboMove: 'disembowel',
+          comboPoints: 0,
+          comboMax: 3,
+          selectedPoison: 'fast',
+          poisonDoses: 3,
+          poisonMax: 3,
+          poisonTypeNote: 'Быстродействующий / Калечащий / Смертоносный'
+        },
+        proficienciesText:
+          'Доспехи: Лёгкие доспехи, кулачные щиты.\n' +
+          'Оружие: Простое оружие, ручные арбалеты, рапиры, короткие мечи, скимитары, сабли, боевые когти, духовые трубки.\n' +
+          'Инструменты: Воровские инструменты, Отравитель, Один игровой набор (карты).',
+        shortFeatures:
+          'Тёмное зрение 120 фт\n' +
+          'Сопротивление скверне\n' +
+          'Наследие высокорождённых\n' +
+          'Магическая зависимость\n' +
+          'Волшебный поток\n' +
+          'КОМПЕТЕНТНОСТЬ\n' +
+          'СКРЫТАЯ АТАКА\n' +
+          'ВОРОВСКОЙ ЖАРГОН\n' +
+          'СЕРИЯ ПРИЁМОВ\n' +
+          'ХИТРОЕ ДЕЙСТВИЕ\n' +
+          'ОТРАВИТЕЛЬ\n' +
+          'подготовки - 3 сф., 3 в 6 скрытая',
+        shortFeaturesNote: 'подготовки - 3 сф., 3 в 6 скрытая',
+        equipment: {
+          armor: 'Проклёпанный кожаный',
+          shield: '',
+          extraItems: 'Дарнасский плащ\nВолшебная рука',
+          countersNote: '160 / ракетница и др. заметки с листа (50, 44, 31, 19, 27)',
+          coins: {
+            copper: 0,
+            silver: 0,
+            gold: 0
+          },
+          gear:
+            'Ломик, комплект обычной тёмной одежды с капюшоном.\n' +
+            'Набор взломщика (16 зм): включает рюкзак, сумку с 1 000 металлических шариков, 10 футов лески, колокольчик, 5 свечек, ломик, молоток, 10 шлямбуров, закрытый фонарь, 2 фляги масла, рационы на 5 дней, трутницу и бурдюк, а также 50-футовая пеньковая верёвка, закреплённая сбоку.\n' +
+            'Воровские инструменты, инструменты отравителя.'
+        },
+        languages: 'Общий, Дарнасский',
+        detailCategories: [
+          {
+            id: 'cat-dependency',
+            title: 'Магическая зависимость',
+            subtitle: 'Страница 2 • Особенность происхождения (Шен\'дралар)',
+            items: [
+              {
+                id: 'feat-magic-addiction',
+                title: 'Магическая зависимость',
+                meta: 'Шен\'дралар • Истощение при нехватке магии',
+                text:
+                  'Шен\'дралар веками практиковали тайную магию и, в конце концов, пристрастились к ней. Вы должны совершать продолжительный отдых в пределах 3 миль от мощного источника магии, такого как лунный колодец или артефакт, употреблять зелья маны или успешно использовать умение «Волшебный поток» хотя бы 1 раз за количество дней, равное вашему модификатору Телосложения.'
+              }
+            ]
+          },
+          {
+            id: 'cat-combo-moves',
+            title: 'Серия приёмов',
+            subtitle: 'Страница 2 • Боевые приёмы разбойника',
+            items: [
+              {
+                id: 'combo-disembowel',
+                title: 'ПОТРОШЕНИЕ',
+                meta: 'Действие • Рукопашная атака оружием',
+                text: 'Действием вы можете совершить по существу рукопашную атаку оружием. Если вы попадаете, вы наносите дополнительно 2к6 урона от оружия за каждый потраченный приём серии.'
+              },
+              {
+                id: 'combo-between-eyes',
+                title: 'ПРОМЕЖ ГЛАЗ!',
+                meta: 'Действие • Дальнобойная атака',
+                text: 'Действием вы можете совершить дальнобойную атаку заряженным лёгким арбалетом, пистолетом, мушкетом или мушкетоном. При попадании цель получает дополнительно 1к8 урона за каждый потраченный приём серии и становится ошеломлённой до начала вашего следующего хода.'
+              },
+              {
+                id: 'combo-poisoning',
+                title: 'ОТРАВЛЕНИЕ',
+                meta: 'Действие • Атака оружием по существу • Яд 1к8 за приём',
+                text: 'Вы можете действием совершить атаку оружием по существу. При попадании цель получает дополнительный урон ядом 1к8 за каждый потраченный приём серии и становится отравленной на 1 минуту.'
+              }
+            ]
+          }
+        ]
+      };
+    }
+
+    function renderShortFeaturesNoteBadge() {
+      const previewEl = document.getElementById('short-features-note-preview');
+      const tagEl = document.getElementById('short-features-note-tag');
+      if (!previewEl || !tagEl) return;
+      const val = String(state.shortFeaturesNote ?? '').trim();
+      if (val) {
+        previewEl.textContent = val;
+        tagEl.classList.remove('hidden');
+        tagEl.classList.add('inline-flex');
+      } else {
+        tagEl.classList.add('hidden');
+        tagEl.classList.remove('inline-flex');
+      }
+    }
+
+    function renderAbilities() {
+      const container = document.getElementById('abilities-grid');
+      if (!container) return;
+      const order = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+      container.innerHTML = order
+        .map((key) => {
+          const ab = state.abilities[key];
+          return `
+            <div class="stat-shield p-3 flex flex-col items-center text-center gap-1.5">
+              <div class="w-full flex items-center justify-between text-[10px] uppercase tracking-wider text-gray-400 font-semibold">
+                <span>${escapeHtml(ab.name)}</span>
+                <button type="button" data-toggle-manual-mod="${key}" class="text-[10px] px-1.5 py-0.5 rounded ${ab.manualMod ? 'bg-amber-500/20 text-amber-300 border border-amber-400/30' : 'text-gray-500 hover:text-gold-300'} cursor-pointer">
+                  ${ab.manualMod ? 'Ручн.' : 'Авто'}
+                </button>
+              </div>
+              <button type="button" data-roll-ability="${key}" class="w-full py-1 px-2 rounded-lg bg-graphite-950/85 hover:bg-gold-500/20 border border-gold-500/35 transition cursor-pointer">
+                <span class="text-2xl font-extrabold text-gold-300">${formatMod(ab.mod)}</span>
+              </button>
+              <div class="flex items-center gap-1 text-[11px] text-gray-400">
+                <span>Знач.:</span>
+                <input type="number" data-ability-score="${key}" value="${escapeHtml(ab.score)}" class="no-spinner w-12 text-center bg-graphite-950 border border-white/15 rounded px-1 py-0.5 text-xs font-bold text-white focus:outline-none focus:border-gold-400" />
+              </div>
+              <div class="flex items-center gap-1 text-[10px] text-gray-500">
+                <span>Мод.:</span>
+                <input type="number" data-ability-mod="${key}" value="${escapeHtml(ab.mod)}" class="no-spinner w-11 text-center bg-graphite-950/70 border border-white/10 rounded px-1 py-0.5 text-[11px] text-gray-300 focus:outline-none focus:border-gold-400" />
+              </div>
+            </div>
+          `;
+        })
+        .join('');
+    }
+
+    function renderSaves() {
+      const container = document.getElementById('saves-list');
+      if (!container) return;
+      const order = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+      container.innerHTML = order
+        .map((key) => {
+          const ab = state.abilities[key];
+          const cfg = state.savingThrows[key] || { prof: false, expertise: false, manualOverride: null };
+          const bonus = getSaveBonus(key);
+          const hasOverride = cfg.manualOverride !== null && cfg.manualOverride !== undefined && cfg.manualOverride !== '';
+          return `
+            <div class="flex items-center justify-between gap-2 px-2.5 py-1 rounded-lg bg-graphite-900/65 border border-white/5 hover:border-gold-500/25 transition">
+              <div class="flex items-center gap-2 min-w-0">
+                <input type="checkbox" data-save-prof="${key}" ${cfg.prof ? 'checked' : ''} class="w-3.5 h-3.5 accent-gold-500 rounded cursor-pointer" />
+                <input type="checkbox" data-save-exp="${key}" ${cfg.expertise ? 'checked' : ''} class="w-3 h-3 accent-amber-400 rounded cursor-pointer" />
+                <button type="button" data-roll-save="${key}" class="min-w-[40px] px-1.5 py-0.5 rounded bg-graphite-800 hover:bg-gold-500/25 border border-gold-500/30 text-xs font-bold text-gold-300 transition cursor-pointer">
+                  ${formatMod(bonus)}
+                </button>
+                <span class="text-xs sm:text-sm text-gray-200 truncate">${escapeHtml(ab.name)}</span>
+              </div>
+              <input type="number" data-save-override="${key}" value="${hasOverride ? escapeHtml(cfg.manualOverride) : ''}" placeholder="авто" class="no-spinner w-11 text-center text-[11px] bg-graphite-950 border border-white/10 rounded px-1 py-0.5 text-gray-400 placeholder:text-gray-600 focus:outline-none focus:border-gold-400" />
+            </div>
+          `;
+        })
+        .join('');
+    }
+
+    function renderSkills() {
+      const container = document.getElementById('skills-list');
+      if (!container) return;
+      const groups = [
+        { key: 'str', label: 'СИЛА' },
+        { key: 'dex', label: 'ЛОВКОСТЬ' },
+        { key: 'int', label: 'ИНТЕЛЛЕКТ' },
+        { key: 'wis', label: 'МУДРОСТЬ' },
+        { key: 'cha', label: 'ХАРИЗМА' }
+      ];
+
+      container.innerHTML = groups
+        .map((grp) => {
+          const matchedSkills = state.skills
+            .map((skill, idx) => ({ skill, idx }))
+            .filter(({ skill }) => skill.ability === grp.key);
+
+          if (!matchedSkills.length) return '';
+
+          const rowsHtml = matchedSkills
+            .map(({ skill, idx }) => {
+              const bonus = getSkillBonus(skill);
+              const hasOverride = skill.manualOverride !== null && skill.manualOverride !== undefined && skill.manualOverride !== '';
+              return `
+                <div class="flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 px-2.5 py-1 rounded-lg bg-graphite-900/65 border border-white/5 hover:border-gold-500/25 transition">
+                  <div class="flex items-center gap-2 min-w-0 flex-1">
+                    <input type="checkbox" data-skill-prof="${idx}" ${skill.prof ? 'checked' : ''} class="w-3.5 h-3.5 accent-gold-500 rounded cursor-pointer" />
+                    <input type="checkbox" data-skill-exp="${idx}" ${skill.expertise ? 'checked' : ''} class="w-3 h-3 accent-amber-400 rounded cursor-pointer" />
+                    <span class="text-xs sm:text-sm text-gray-200 truncate">${escapeHtml(skill.name)}</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <button type="button" data-roll-skill="${idx}" class="min-w-[40px] px-1.5 py-0.5 rounded bg-graphite-800 hover:bg-gold-500/25 border border-gold-500/30 text-xs font-bold text-gold-300 transition cursor-pointer">
+                      ${formatMod(bonus)}
+                    </button>
+                    <input type="text" data-skill-note="${idx}" value="${escapeHtml(skill.note || '')}" placeholder="заметка" class="w-20 sm:w-24 text-[11px] bg-graphite-950/80 border border-white/10 rounded px-1.5 py-0.5 text-amber-200/90 placeholder:text-gray-600 focus:outline-none focus:border-gold-400" />
+                    <input type="number" data-skill-override="${idx}" value="${hasOverride ? escapeHtml(skill.manualOverride) : ''}" placeholder="авто" class="no-spinner w-11 text-center text-[11px] bg-graphite-950 border border-white/10 rounded px-1 py-0.5 text-gray-400 placeholder:text-gray-600 focus:outline-none focus:border-gold-400" />
+                  </div>
+                </div>
+              `;
+            })
+            .join('');
+
+          return `
+            <div class="pt-2 first:pt-0 space-y-1">
+              <div class="px-1.5 text-[11px] font-display uppercase tracking-wider text-gold-400/90 font-bold">
+                ${escapeHtml(grp.label)}
+              </div>
+              <div class="space-y-0.5">
+                ${rowsHtml}
+              </div>
+            </div>
+          `;
+        })
+        .join('');
+    }
+
+    function renderCombatHelpers() {
+      const initDisplay = document.getElementById('init-display');
+      if (initDisplay) {
+        initDisplay.textContent = formatMod(Number(state.combat.initiative) || 0);
+      }
+
+      const selectedMove = state.trackers?.selectedComboMove || 'disembowel';
+      const moveConfig = {
+        disembowel: {
+          title: 'Потрошение',
+          buttonLabel: (pts) => `🎲 Бросить урон Потрошения (${pts * 2}к6)`
+        },
+        between_eyes: {
+          title: 'Промеж глаз!',
+          buttonLabel: (pts) => `🎲 Бросить урон Промеж глаз (${pts}к8)`
+        },
+        poisoning: {
+          title: 'Отравление',
+          buttonLabel: (pts) => `🎲 Бросить яд Отравления (${pts}к8)`
+        }
+      }[selectedMove] || {
+        title: 'Потрошение',
+        buttonLabel: (pts) => `🎲 Бросить урон Потрошения (${pts * 2}к6)`
+      };
+
+      const comboPts = Math.max(0, Number(state.trackers?.comboPoints) || 0);
+      const effectivePts = Math.max(1, comboPts);
+      const rollBtn = document.getElementById('btn-roll-combo-dmg');
+      if (rollBtn) {
+        rollBtn.textContent = moveConfig.buttonLabel(effectivePts);
+      }
+
+      const comboHint = document.getElementById('combo-summary-hint');
+      if (comboHint) {
+        comboHint.textContent =
+          comboPts > 0
+            ? `Приём: ${moveConfig.title} • Активно приёмов: ${comboPts} (Потрошение: +${comboPts * 2}к6 • Промеж глаз / Отравление: +${comboPts}к8)`
+            : `Выбран приём: ${moveConfig.title} • Потрошение +2к6 • Промеж глаз +1к8 • Отравление +1к8 яд за приём`;
+      }
+
+      const poisonConfig = {
+        fast: {
+          hint: 'Урон: 3к8 ядом • Спасбросок Тел. на половину урона',
+          buttonText: '🎲 3d8'
+        },
+        crippling: {
+          hint: '1 мин.: скорость ÷2, нет реакций, не более 1 атаки за ход',
+          buttonText: '🎲 1d20'
+        },
+        deadly: {
+          hint: '1 мин.: 1к8 ядом в начале каждого хода цели',
+          buttonText: '🎲 1d8'
+        }
+      }[state.trackers?.selectedPoison || 'fast'] || {
+        hint: 'Урон: 3к8 ядом • Спасбросок Тел. на половину урона',
+        buttonText: '🎲 3d8'
+      };
+
+      const poisonHintEl = document.getElementById('poison-effect-hint');
+      if (poisonHintEl) poisonHintEl.textContent = poisonConfig.hint;
+      const poisonRollBtn = document.getElementById('btn-roll-fast-poison');
+      if (poisonRollBtn) poisonRollBtn.textContent = poisonConfig.buttonText;
+
+      const cur = Math.max(0, Number(state.hp.current) || 0);
+      const max = Math.max(1, Number(state.hp.max) || 36);
+      const pct = Math.max(0, Math.min(100, Math.round((cur / max) * 100)));
+      const hpBar = document.getElementById('hp-bar');
+      if (hpBar) {
+        hpBar.style.width = `${pct}%`;
+      }
+
+      const copper = Math.max(0, Number(state.equipment?.coins?.copper) || 0);
+      const silver = Math.max(0, Number(state.equipment?.coins?.silver) || 0);
+      const gold = Math.max(0, Number(state.equipment?.coins?.gold) || 0);
+      const totalGold = (gold + silver / 10 + copper / 100).toFixed(2).replace(/\.?0+$/, '');
+      const coinsTotalEl = document.getElementById('coins-total-gp');
+      if (coinsTotalEl) {
+        coinsTotalEl.textContent = `Всего в золоте: ${totalGold || 0} зм`;
+      }
+    }
+
+    function renderAttacks() {
+      const container = document.getElementById('attacks-list');
+      if (!container) return;
+      container.innerHTML = state.attacks
+        .map(
+          (atk, idx) => `
+          <div class="bg-graphite-900/75 border border-white/10 rounded-xl p-3 space-y-2.5">
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center">
+              <div class="sm:col-span-4">
+                <label class="block text-[10px] uppercase tracking-wider text-gray-500 mb-0.5">Название</label>
+                <input type="text" data-atk-idx="${idx}" data-atk-field="name" value="${escapeHtml(atk.name)}" class="dnd-input w-full px-2.5 py-1.5 text-sm font-semibold text-white" />
+              </div>
+              <div class="sm:col-span-3">
+                <label class="block text-[10px] uppercase tracking-wider text-gray-500 mb-0.5">Бонус атаки</label>
+                <div class="flex items-center gap-1">
+                  <input type="text" data-atk-idx="${idx}" data-atk-field="attackBonus" value="${escapeHtml(atk.attackBonus)}" class="dnd-input w-full px-2 py-1.5 text-sm font-bold text-gold-300 text-center" />
+                  <button type="button" data-roll-atk-hit="${idx}" class="px-2 py-1.5 rounded-lg bg-gold-500/20 hover:bg-gold-500/35 border border-gold-500/35 text-xs font-semibold text-gold-200 transition cursor-pointer shrink-0">🎲</button>
+                </div>
+              </div>
+              <div class="sm:col-span-5">
+                <label class="block text-[10px] uppercase tracking-wider text-gray-500 mb-0.5">Урон и тип</label>
+                <div class="flex items-center gap-1.5">
+                  <input type="text" data-atk-idx="${idx}" data-atk-field="damage" value="${escapeHtml(atk.damage)}" class="dnd-input w-24 px-2 py-1.5 text-sm font-semibold text-rose-300 text-center" />
+                  <input type="text" data-atk-idx="${idx}" data-atk-field="damageType" value="${escapeHtml(atk.damageType)}" class="dnd-input flex-1 min-w-0 px-2 py-1.5 text-xs text-gray-300" />
+                  <button type="button" data-roll-atk-dmg="${idx}" class="px-2 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/35 border border-rose-500/35 text-xs font-semibold text-rose-200 transition cursor-pointer shrink-0">💥</button>
+                  <button type="button" data-remove-atk="${idx}" class="no-print px-2 py-1.5 rounded-lg bg-graphite-800 hover:bg-rose-950 text-gray-400 hover:text-rose-300 border border-white/10 text-xs transition cursor-pointer shrink-0">✕</button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <input type="text" data-atk-idx="${idx}" data-atk-field="notes" value="${escapeHtml(atk.notes || '')}" placeholder="Заметки к атаке..." class="dnd-input w-full px-2.5 py-1 text-xs text-amber-100/90 placeholder:text-gray-600" />
+            </div>
+          </div>
+        `
+        )
+        .join('');
+    }
+
+    function renderDetailSections() {
+      const container = document.getElementById('detail-sections-container');
+      if (!container) return;
+      container.innerHTML = state.detailCategories
+        .map(
+          (cat, catIdx) => `
+          <section class="dnd-card p-4 sm:p-5 space-y-4">
+            <div class="flex flex-wrap items-start justify-between gap-3 border-b border-white/10 pb-3">
+              <div class="flex-1 min-w-[220px] space-y-1.5">
+                <input type="text" data-cat-idx="${catIdx}" data-cat-field="title" value="${escapeHtml(cat.title)}" class="dnd-input w-full px-3 py-1.5 font-display text-base sm:text-lg font-bold text-gold-400" />
+                <input type="text" data-cat-idx="${catIdx}" data-cat-field="subtitle" value="${escapeHtml(cat.subtitle || '')}" class="dnd-input w-full px-3 py-1 text-xs text-gray-400" />
+              </div>
+              <div class="no-print flex items-center gap-2">
+                <button type="button" data-add-detail-item="${catIdx}" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-gold-500/20 hover:bg-gold-500/30 text-gold-300 border border-gold-500/35 transition cursor-pointer">
+                  + Запись
+                </button>
+                <button type="button" data-remove-cat="${catIdx}" class="px-2.5 py-1.5 rounded-lg text-xs bg-graphite-800 hover:bg-rose-950 text-gray-400 hover:text-rose-300 border border-white/10 transition cursor-pointer">
+                  ✕
+                </button>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${(cat.items || [])
+                .map(
+                  (item, itemIdx) => `
+                  <div class="bg-graphite-900/75 border border-white/10 rounded-xl p-3.5 space-y-2 flex flex-col">
+                    <div class="flex items-start justify-between gap-2">
+                      <input type="text" data-cat-idx="${catIdx}" data-item-idx="${itemIdx}" data-item-field="title" value="${escapeHtml(item.title)}" class="dnd-input flex-1 min-w-0 px-2.5 py-1 text-sm font-bold text-white" />
+                      <button type="button" data-remove-item="${catIdx}:${itemIdx}" class="no-print px-2 py-1 rounded bg-graphite-800 hover:bg-rose-950 text-gray-400 hover:text-rose-300 border border-white/10 text-xs transition cursor-pointer shrink-0">
+                        ✕
+                      </button>
+                    </div>
+                    <input type="text" data-cat-idx="${catIdx}" data-item-idx="${itemIdx}" data-item-field="meta" value="${escapeHtml(item.meta || '')}" class="dnd-input w-full px-2.5 py-1 text-xs text-gold-300/90" />
+                    <textarea rows="5" data-cat-idx="${catIdx}" data-item-idx="${itemIdx}" data-item-field="text" class="dnd-input w-full p-2.5 text-xs sm:text-sm leading-relaxed text-gray-200 flex-1">${escapeHtml(item.text || '')}</textarea>
+                  </div>
+                `
+                )
+                .join('')}
+            </div>
+          </section>
+        `
+        )
+        .join('');
+    }
+
+    function renderPrintSummary() {
+      const el = document.getElementById('print-extra-content');
+      if (!el) return;
+      el.innerHTML = `<h2 class="font-bold text-lg">${escapeHtml(state.header.name)}</h2>`;
+    }
+
+    function renderAll() {
+      syncBoundInputs();
+      renderShortFeaturesNoteBadge();
+      renderAbilities();
+      renderSaves();
+      renderSkills();
+      renderCombatHelpers();
+      renderAttacks();
+      renderDetailSections();
+      renderPrintSummary();
+      updateTabVisibility();
+    }
+
+    function updateTabVisibility() {
+      document.querySelectorAll('.tab-panel').forEach((panel) => {
+        panel.classList.toggle('hidden', panel.id !== `tab-${activeTab}`);
+      });
+
+      document.querySelectorAll('.tab-btn').forEach((btn) => {
+        const isActive = btn.getAttribute('data-tab') === activeTab;
+        btn.className = isActive
+          ? 'tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap cursor-pointer bg-gold-500 text-graphite-950 shadow-md shadow-gold-500/20'
+          : 'tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 whitespace-nowrap cursor-pointer bg-graphite-850 hover:bg-graphite-800 text-gray-300 border border-gold-500/20';
+      });
+    }
+
+    function switchTab(tabName) {
+      activeTab = tabName === 'skills' ? 'features' : tabName;
+      if (activeTab === 'features') {
+        renderDetailSections();
+      }
+      updateTabVisibility();
+    }
+
+    function bindEvents() {
+      document.querySelectorAll('.tab-btn').forEach((btn) => {
+        btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+      });
+
+      document.querySelectorAll('[data-jump-tab]').forEach((btn) => {
+        btn.addEventListener('click', () => switchTab(btn.getAttribute('data-jump-tab')));
+      });
+
+      document.addEventListener('change', (e) => {
+        const target = e.target;
+
+        if (target.matches('[data-save-prof]')) {
+          const key = target.getAttribute('data-save-prof');
+          state.savingThrows[key].prof = target.checked;
+          renderSaves();
+          scheduleSave();
+          return;
+        }
+
+        if (target.matches('[data-save-exp]')) {
+          const key = target.getAttribute('data-save-exp');
+          state.savingThrows[key].expertise = target.checked;
+          renderSaves();
+          scheduleSave();
+          return;
+        }
+
+        if (target.matches('[data-skill-prof]')) {
+          const idx = Number(target.getAttribute('data-skill-prof'));
+          if (state.skills[idx]) {
+            state.skills[idx].prof = target.checked;
+            renderSkills();
+            scheduleSave();
+          }
+          return;
+        }
+
+        if (target.matches('[data-skill-exp]')) {
+          const idx = Number(target.getAttribute('data-skill-exp'));
+          if (state.skills[idx]) {
+            state.skills[idx].expertise = target.checked;
+            renderSkills();
+            scheduleSave();
+          }
+          return;
+        }
+
+        if (target.matches('[data-death-save]')) {
+          const path = target.getAttribute('data-death-save');
+          setByPath(state.deathSaves, path, target.checked);
+          scheduleSave();
+          return;
+        }
+
+        if (target.id === 'import-json-input' && target.files?.[0]) {
+          importStateFromJsonFile(target.files[0]);
+          target.value = '';
+        }
+      });
+
+      document.addEventListener('input', (e) => {
+        const target = e.target;
+
+        if (target.matches('[data-bind]')) {
+          const bindPath = target.getAttribute('data-bind');
+          setByPath(state, bindPath, target.value);
+          if (bindPath === 'shortFeaturesNote') {
+            renderShortFeaturesNoteBadge();
+          }
+          scheduleSave();
+          return;
+        }
+
+        if (target.matches('[data-bind-num]')) {
+          const path = target.getAttribute('data-bind-num');
+          const raw = target.value;
+          const val = raw === '' ? '' : Number(raw);
+          setByPath(state, path, val);
+          renderCombatHelpers();
+          scheduleSave();
+          return;
+        }
+
+        if (target.matches('select[data-bind]')) {
+          const bindPath = target.getAttribute('data-bind');
+          setByPath(state, bindPath, target.value);
+          renderCombatHelpers();
+          scheduleSave();
+          return;
+        }
+
+        if (target.matches('[data-ability-score]')) {
+          const key = target.getAttribute('data-ability-score');
+          const score = Number(target.value);
+          state.abilities[key].score = Number.isNaN(score) ? 10 : score;
+          recalculateAbilityMods(false);
+          renderAbilities();
+          renderSaves();
+          renderSkills();
+          scheduleSave();
+          return;
+        }
+
+        if (target.matches('[data-ability-mod]')) {
+          const key = target.getAttribute('data-ability-mod');
+          const mod = Number(target.value);
+          state.abilities[key].mod = Number.isNaN(mod) ? 0 : mod;
+          state.abilities[key].manualMod = true;
+          renderAbilities();
+          renderSaves();
+          renderSkills();
+          scheduleSave();
+          return;
+        }
+
+        if (target.matches('[data-save-override]')) {
+          const key = target.getAttribute('data-save-override');
+          state.savingThrows[key].manualOverride = target.value === '' ? null : Number(target.value);
+          renderSaves();
+          scheduleSave();
+          return;
+        }
+
+        if (target.matches('[data-skill-note]')) {
+          const idx = Number(target.getAttribute('data-skill-note'));
+          if (state.skills[idx]) {
+            state.skills[idx].note = target.value;
+            scheduleSave();
+          }
+          return;
+        }
+
+        if (target.matches('[data-skill-override]')) {
+          const idx = Number(target.getAttribute('data-skill-override'));
+          if (state.skills[idx]) {
+            state.skills[idx].manualOverride = target.value === '' ? null : Number(target.value);
+            renderSkills();
+            scheduleSave();
+          }
+          return;
+        }
+
+        if (target.matches('[data-atk-field]')) {
+          const idx = Number(target.getAttribute('data-atk-idx'));
+          const field = target.getAttribute('data-atk-field');
+          if (state.attacks[idx]) {
+            state.attacks[idx][field] = target.value;
+            scheduleSave();
+          }
+          return;
+        }
+
+        if (target.matches('[data-cat-field]')) {
+          const catIdx = Number(target.getAttribute('data-cat-idx'));
+          const field = target.getAttribute('data-cat-field');
+          if (state.detailCategories[catIdx]) {
+            state.detailCategories[catIdx][field] = target.value;
+            scheduleSave();
+          }
+          return;
+        }
+
+        if (target.matches('[data-item-field]')) {
+          const catIdx = Number(target.getAttribute('data-cat-idx'));
+          const itemIdx = Number(target.getAttribute('data-item-idx'));
+          const field = target.getAttribute('data-item-field');
+          if (state.detailCategories[catIdx]?.items[itemIdx]) {
+            state.detailCategories[catIdx].items[itemIdx][field] = target.value;
+            scheduleSave();
+          }
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        const target = e.target.closest('button');
+        if (!target) return;
+
+        if (target.hasAttribute('data-toggle-manual-mod')) {
+          const key = target.getAttribute('data-toggle-manual-mod');
+          const ab = state.abilities[key];
+          ab.manualMod = !ab.manualMod;
+          if (!ab.manualMod) {
+            ab.mod = calcAbilityMod(ab.score);
+          }
+          renderAbilities();
+          renderSaves();
+          renderSkills();
+          scheduleSave();
+          return;
+        }
+
+        if (target.hasAttribute('data-roll-ability')) {
+          const key = target.getAttribute('data-roll-ability');
+          const ab = state.abilities[key];
+          announceRoll(rollDiceFormula(`1d20${formatMod(ab.mod)}`, `Проверка: ${ab.name}`));
+          return;
+        }
+
+        if (target.hasAttribute('data-roll-save')) {
+          const key = target.getAttribute('data-roll-save');
+          const ab = state.abilities[key];
+          announceRoll(rollDiceFormula(`1d20${formatMod(getSaveBonus(key))}`, `Спасбросок: ${ab.name}`));
+          return;
+        }
+
+        if (target.hasAttribute('data-roll-skill')) {
+          const idx = Number(target.getAttribute('data-roll-skill'));
+          const skill = state.skills[idx];
+          if (skill) {
+            announceRoll(rollDiceFormula(`1d20${formatMod(getSkillBonus(skill))}`, `Навык: ${skill.name}`));
+          }
+          return;
+        }
+
+        if (target.hasAttribute('data-roll-atk-hit')) {
+          const idx = Number(target.getAttribute('data-atk-idx'));
+          const atk = state.attacks[idx];
+          if (atk) {
+            const rawBonus = String(atk.attackBonus || '').trim();
+            const signedBonus = rawBonus.startsWith('+') || rawBonus.startsWith('-') ? rawBonus : `+${rawBonus || 0}`;
+            announceRoll(rollDiceFormula(`1d20${signedBonus}`, `Атака: ${atk.name}`));
+          }
+          return;
+        }
+
+        if (target.hasAttribute('data-roll-atk-dmg')) {
+          const idx = Number(target.getAttribute('data-atk-idx'));
+          const atk = state.attacks[idx];
+          if (atk) {
+            announceRoll(rollDiceFormula(atk.damage || '1к6', `Урон: ${atk.name}`));
+          }
+          return;
+        }
+
+        if (target.hasAttribute('data-remove-atk')) {
+          const idx = Number(target.getAttribute('data-remove-atk'));
+          state.attacks.splice(idx, 1);
+          renderAttacks();
+          scheduleSave();
+          return;
+        }
+
+        if (target.hasAttribute('data-add-detail-item')) {
+          const catIdx = Number(target.getAttribute('data-add-detail-item'));
+          if (state.detailCategories[catIdx]) {
+            state.detailCategories[catIdx].items.push({
+              id: `item-${Date.now()}`,
+              title: 'Новая особенность / заклинание',
+              meta: 'Параметры',
+              text: 'Описание...'
+            });
+            renderDetailSections();
+            scheduleSave();
+          }
+          return;
+        }
+
+        if (target.hasAttribute('data-remove-item')) {
+          const [cIdx, iIdx] = target.getAttribute('data-remove-item').split(':').map(Number);
+          if (state.detailCategories[cIdx]?.items[iIdx]) {
+            state.detailCategories[cIdx].items.splice(iIdx, 1);
+            renderDetailSections();
+            scheduleSave();
+          }
+          return;
+        }
+
+        if (target.hasAttribute('data-remove-cat')) {
+          const catIdx = Number(target.getAttribute('data-remove-cat'));
+          state.detailCategories.splice(catIdx, 1);
+          renderDetailSections();
+          scheduleSave();
+          return;
+        }
+
+        if (target.hasAttribute('data-quick-dice')) {
+          const die = target.getAttribute('data-quick-dice');
+          const count = getDiceCount();
+          announceRoll(rollDiceFormula(`${count}${die}`, `Бросок ${count}${die}`));
+          return;
+        }
+
+        if (target.hasAttribute('data-coin-step')) {
+          const [coinKey, deltaStr] = target.getAttribute('data-coin-step').split(':');
+          const delta = Number(deltaStr) || 0;
+          if (!state.equipment.coins) {
+            state.equipment.coins = { copper: 0, silver: 0, gold: 0 };
+          }
+          const currentVal = Math.max(0, Number(state.equipment.coins[coinKey]) || 0);
+          state.equipment.coins[coinKey] = Math.max(0, currentVal + delta);
+          syncBoundInputs();
+          renderCombatHelpers();
+          scheduleSave();
+        }
+      });
+
+      document.getElementById('btn-save-as-preset')?.addEventListener('click', () => saveValuesAsPreset());
+      document.getElementById('btn-export-json')?.addEventListener('click', () => exportStateToJson());
+      document.getElementById('btn-cloud-connect')?.addEventListener('click', () => {
+        const val = document.getElementById('cloud-profile-input')?.value || 'kai-main';
+        switchCloudProfile(val);
+      });
+      document.getElementById('cloud-profile-input')?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          switchCloudProfile(e.currentTarget.value);
+        }
+      });
+
+      document.getElementById('btn-reset-defaults')?.addEventListener('click', () => {
+        openConfirmModal(
+          'Сброс значений',
+          'Вернуть текущие значения к зафиксированному шаблону (или к заводским настройкам листа)?',
+          'Сбросить',
+          () => {
+            state = getActiveBaseData();
+            recalculateAbilityMods(false);
+            persistCurrentStateNow();
+            renderAll();
+            showToast('↺ Значения сброшены к базовому шаблону', 'info');
+          }
+        );
+      });
+
+      window.addEventListener('beforeunload', () => {
+        persistCurrentStateNow();
+      });
+
+      document.getElementById('btn-dice-count-dec')?.addEventListener('click', () => setDiceCount(getDiceCount() - 1));
+      document.getElementById('btn-dice-count-inc')?.addEventListener('click', () => setDiceCount(getDiceCount() + 1));
+      document.getElementById('dice-count-input')?.addEventListener('input', () => getDiceCount());
+
+      document.querySelectorAll('[data-dice-count-preset]').forEach((btn) => {
+        btn.addEventListener('click', () => setDiceCount(Number(btn.getAttribute('data-dice-count-preset'))));
+      });
+
+      document.getElementById('btn-rigged-mode')?.addEventListener('click', () => toggleLuckMode());
+      document.getElementById('btn-secret-luck-toggle')?.addEventListener('click', () => toggleLuckMode());
+
+      document.getElementById('btn-calc-op-add')?.addEventListener('click', () => {
+        diceCalcState.nextOp = '+';
+        renderDiceCalculator();
+      });
+      document.getElementById('btn-calc-op-sub')?.addEventListener('click', () => {
+        diceCalcState.nextOp = '-';
+        renderDiceCalculator();
+      });
+      document.getElementById('btn-calc-op-mul')?.addEventListener('click', () => {
+        diceCalcState.nextOp = '*';
+        renderDiceCalculator();
+      });
+      document.getElementById('btn-calc-op-div')?.addEventListener('click', () => {
+        diceCalcState.nextOp = '/';
+        renderDiceCalculator();
+      });
+
+      document.getElementById('btn-calc-add-manual')?.addEventListener('click', () => {
+        const input = document.getElementById('calc-manual-value');
+        const raw = Number(input?.value);
+        if (Number.isNaN(raw) || input?.value === '') {
+          showToast('Введите число для калькулятора', 'info');
+          return;
+        }
+        diceCalcState.entries.push({
+          label: 'Число',
+          value: raw,
+          op: diceCalcState.nextOp || '+'
+        });
+        if (diceCalcState.nextOp === '*' || diceCalcState.nextOp === '/') {
+          diceCalcState.nextOp = '+';
+        }
+        if (input) input.value = '';
+        renderDiceCalculator();
+      });
+
+      document.getElementById('calc-manual-value')?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          document.getElementById('btn-calc-add-manual')?.click();
+        }
+      });
+
+      document.getElementById('btn-calc-undo')?.addEventListener('click', () => {
+        if (!diceCalcState.entries.length) return;
+        diceCalcState.entries.pop();
+        renderDiceCalculator();
+      });
+
+      document.getElementById('btn-calc-clear')?.addEventListener('click', () => {
+        diceCalcState.entries = [];
+        diceCalcState.nextOp = '+';
+        renderDiceCalculator();
+        showToast('Калькулятор бросков очищен', 'info');
+      });
+
+      document.getElementById('btn-sync-mods')?.addEventListener('click', () => {
+        recalculateAbilityMods(true);
+        renderAbilities();
+        renderSaves();
+        renderSkills();
+        scheduleSave();
+        showToast('Модификаторы пересчитаны по формуле D&D 5e', 'success');
+      });
+
+      document.getElementById('btn-roll-d20')?.addEventListener('click', () => {
+        const count = getDiceCount();
+        announceRoll(rollDiceFormula(`${count}d20`, `Бросок ${count}d20`));
+      });
+
+      document.getElementById('btn-toggle-dice-panel')?.addEventListener('click', () => toggleDicePanel());
+
+      document.getElementById('btn-roll-init')?.addEventListener('click', () => {
+        announceRoll(rollDiceFormula(`1d20${formatMod(Number(state.combat.initiative) || 0)}`, 'Инициатива'));
+      });
+
+      document.getElementById('btn-auto-init')?.addEventListener('click', () => {
+        state.combat.initiative = Number(state.abilities.dex.mod) || 0;
+        syncBoundInputs();
+        renderCombatHelpers();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-auto-passive')?.addEventListener('click', () => {
+        const perceptionSkill = state.skills.find((s) => s.id === 'perception');
+        const bonus = perceptionSkill ? getSkillBonus(perceptionSkill) : Number(state.abilities.wis.mod) || 0;
+        state.combat.passivePerception = 10 + bonus;
+        syncBoundInputs();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-apply-damage')?.addEventListener('click', () => {
+        const delta = Math.max(0, Number(document.getElementById('hp-delta-input')?.value) || 0);
+        let remaining = delta;
+        let temp = Number(state.hp.temp) || 0;
+        if (temp > 0) {
+          const absorbed = Math.min(temp, remaining);
+          temp -= absorbed;
+          remaining -= absorbed;
+          state.hp.temp = temp > 0 ? temp : '';
+        }
+        state.hp.current = Math.max(0, (Number(state.hp.current) || 0) - remaining);
+        syncBoundInputs();
+        renderCombatHelpers();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-apply-heal')?.addEventListener('click', () => {
+        const delta = Math.max(0, Number(document.getElementById('hp-delta-input')?.value) || 0);
+        const maxHp = Math.max(1, Number(state.hp.max) || 36);
+        state.hp.current = Math.min(maxHp, (Number(state.hp.current) || 0) + delta);
+        syncBoundInputs();
+        renderCombatHelpers();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-roll-hitdie')?.addEventListener('click', () => {
+        const dieType = state.hitDice.dieType || 'к8';
+        const conMod = Number(state.abilities.con.mod) || 0;
+        announceRoll(rollDiceFormula(`1${dieType}${formatMod(conMod)}`, 'Кость хитов'));
+      });
+
+      document.getElementById('btn-reset-death-saves')?.addEventListener('click', () => {
+        state.deathSaves = { successes: [false, false, false], failures: [false, false, false] };
+        syncBoundInputs();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-combo-dec')?.addEventListener('click', () => {
+        state.trackers.comboPoints = Math.max(0, (Number(state.trackers.comboPoints) || 0) - 1);
+        syncBoundInputs();
+        renderCombatHelpers();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-combo-inc')?.addEventListener('click', () => {
+        const cur = Math.max(0, Number(state.trackers.comboPoints) || 0);
+        const max = Number(state.trackers.comboMax);
+        state.trackers.comboPoints = max > 0 ? Math.min(max, cur + 1) : cur + 1;
+        syncBoundInputs();
+        renderCombatHelpers();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-reset-combo')?.addEventListener('click', () => {
+        state.trackers.comboPoints = 0;
+        syncBoundInputs();
+        renderCombatHelpers();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-roll-combo-dmg')?.addEventListener('click', () => {
+        const pts = Math.max(1, Number(state.trackers.comboPoints) || 1);
+        const selectedMove = state.trackers?.selectedComboMove || 'disembowel';
+        if (selectedMove === 'between_eyes') {
+          announceRoll(rollDiceFormula(`${pts}d8`, `Промеж глаз! (${pts} приём(а/ов))`));
+        } else if (selectedMove === 'poisoning') {
+          announceRoll(rollDiceFormula(`${pts}d8`, `Отравление (${pts} приём(а/ов))`));
+        } else {
+          announceRoll(rollDiceFormula(`${pts * 2}d6`, `Потрошение (${pts} приём(а/ов))`));
+        }
+      });
+
+      document.getElementById('btn-poison-dec')?.addEventListener('click', () => {
+        state.trackers.poisonDoses = Math.max(0, (Number(state.trackers.poisonDoses) || 0) - 1);
+        syncBoundInputs();
+        renderCombatHelpers();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-poison-inc')?.addEventListener('click', () => {
+        const cur = Math.max(0, Number(state.trackers.poisonDoses) || 0);
+        const max = Number(state.trackers.poisonMax);
+        state.trackers.poisonDoses = max > 0 ? Math.min(max, cur + 1) : cur + 1;
+        syncBoundInputs();
+        renderCombatHelpers();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-reset-poisons')?.addEventListener('click', () => {
+        state.trackers.poisonDoses = Math.max(0, Number(state.trackers.poisonMax) || 3);
+        syncBoundInputs();
+        renderCombatHelpers();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-roll-fast-poison')?.addEventListener('click', () => {
+        const selectedPoison = state.trackers?.selectedPoison || 'fast';
+        if (selectedPoison === 'crippling') {
+          announceRoll(rollDiceFormula('1d20', 'Калечащий яд (спасбросок/проверка)'));
+        } else if (selectedPoison === 'deadly') {
+          announceRoll(rollDiceFormula('1d8', 'Смертоносный яд (урон в начале хода)'));
+        } else {
+          announceRoll(rollDiceFormula('3d8', 'Быстродействующий яд'));
+        }
+      });
+
+      document.getElementById('btn-add-attack')?.addEventListener('click', () => {
+        state.attacks.push({
+          id: `atk-${Date.now()}`,
+          name: 'Новая атака',
+          attackBonus: '+6',
+          damage: '1к6+4',
+          damageType: 'колющий',
+          notes: ''
+        });
+        renderAttacks();
+        scheduleSave();
+      });
+
+      document.getElementById('btn-add-detail-block')?.addEventListener('click', () => {
+        state.detailCategories.push({
+          id: `cat-${Date.now()}`,
+          title: 'Новый раздел особенностей / заклинаний',
+          subtitle: 'Пользовательский блок',
+          items: [
+            {
+              id: `item-${Date.now()}-1`,
+              title: 'Новая запись',
+              meta: 'Параметры',
+              text: 'Введите подробное описание...'
+            }
+          ]
+        });
+        renderDetailSections();
+        scheduleSave();
+      });
+    }
+
+    let state = loadInitialState();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      recalculateAbilityMods(false);
+      syncRiggedUi();
+      syncDicePanelCollapse();
+      renderDiceCalculator();
+      bindEvents();
+      renderAll();
+      initCloudSync();
+    });
+  </script>
+</body>
+</html>
